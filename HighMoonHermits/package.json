@@ -1,11 +1,12 @@
 {
-  "name": "translation-manager",
+  "name": "high-moon-hermits",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server",    
-    "build": "SET NODE_ENV='production' && webpack",
+    "build": "NODE_ENV='production' webpack",
+    "build-windows": "SET NODE_ENV='production' && webpack",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
