@@ -1,4 +1,4 @@
-import React from 'react'
+import React from './node_modules/react'
 
 export default class SoundCloud extends React.Component {
     render() {        

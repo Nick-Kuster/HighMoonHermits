@@ -1,6 +1,6 @@
-import React from 'react'
-import { makeStyles } from '@material-ui/core/styles';
-import { Typography, Grid } from '@material-ui/core';
+import React from './node_modules/react'
+import { makeStyles } from './node_modules/@material-ui/core/styles';
+import { Typography, Grid } from './node_modules/@material-ui/core';
 
 export default class Quote extends React.Component {
    

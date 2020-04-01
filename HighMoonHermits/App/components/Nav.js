@@ -1,12 +1,12 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import clsx from 'clsx';
-import { AppBar, Toolbar, Typography, IconButton, Avatar, Drawer } from '@material-ui/core';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import React from './node_modules/react';
+import { Link } from './node_modules/react-router-dom';
+import clsx from './node_modules/clsx';
+import { AppBar, Toolbar, Typography, IconButton, Avatar, Drawer } from './node_modules/@material-ui/core';
+import { makeStyles, useTheme } from './node_modules/@material-ui/core/styles';
 import SoundCloud from './SoundCloud';
-import QueueMusicIcon from '@material-ui/icons/QueueMusic';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import QueueMusicIcon from './node_modules/@material-ui/icons/QueueMusic';
+import ChevronLeftIcon from './node_modules/@material-ui/icons/ChevronLeft';
+import ChevronRightIcon from './node_modules/@material-ui/icons/ChevronRight';
 
 const useStyles = makeStyles(theme => ({
     large: {
