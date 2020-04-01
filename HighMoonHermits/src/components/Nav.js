@@ -7,7 +7,7 @@ import SoundCloud from './SoundCloud';
 import QueueMusicIcon from '@material-ui/icons/QueueMusic';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-const hermanUrl = 'https://lh3.googleusercontent.com/qojlwm1eAkuK1DhcmsXeMFHVbFUy1fwWnEMtQn2z2m031TQiq_fN4Q_KERZVe0w7uBuJFOBGXY3-xOXhCxCg7yIbeJe7Rgc4cmOwn0FzTFf4-HLsDAefJ83x5vwKQY3_Oh9BCFva7FVxZflSBYchj9W2mnBzE0oOGVQX48Usk8CHyGZpSDJ2TaLN3zAI8w5DACSwPauRUILB7PUkofBvu31wk323CXUQ-iEyYC04dGIqoL6JdaApvPxmz870ljdwiqOaCMqkecRfKv_csJnMRaVHtjaHW3fgKY-Sqbpg9H48TzVK0MS4o6wWk_u_XijbELzUYRFGsXUp3qoGYu5_1XPaM9tOUNU2fyMtE-akr6hs4m5J1P3XZs06iCSZzyuCCyOds1Oewb0ZP_pG3Lje5XfiaQWclEIFFPrJfioLqZfnUHHbOZocJMrjXnbFhW6N5AZ1wThgFzdlV6Pu67JOQub1-D9xDS-nDBeSrlQpHUk1pJdzcYMLOJoP9qC2p-nxt_oiiYAs7evUQ2a4cuFytVOog4OemvXyliZiXeVRLmfHrFzbUOXVYKWEFpxTPYeisk1DfQy_tQX-kBR4UcE-LzyxHk9OPTRH3iU1_LpzV5u58z7SUQGNYKZvKhAwk67kRlX-7VipUkes6zJJtdVwfnTNpiUE53FKgaMTsZhTx1pFjtSJi43CuIoMi69f=w899-h853-no';
+const hermanUrl = 'https://i.imgur.com/jOeu3qK.png';
 const useStyles = makeStyles(theme => ({
     large: {
         width: theme.spacing(7),
