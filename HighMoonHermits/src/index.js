@@ -1,13 +1,13 @@
-import React from './node_modules/react'
-import ReactDOM from './node_modules/react-dom'
+import React from 'react'
+import ReactDOM from 'react-dom'
 import './index.css'
-import { ThemeProvider, createMuiTheme } from './node_modules/@material-ui/core/styles';
+import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import Videos from './components/Videos';
 import Home from './components/Home';
 import Nav from './components/Nav';
 import Banner  from './components/Banner';
 import BackToTop from './components/BackToTop';
-import { BrowserRouter as Router, Route, Switch} from './node_modules/react-router-dom';
+import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 
 const theme = createMuiTheme({
     palette: {

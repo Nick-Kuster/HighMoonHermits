@@ -1,11 +1,11 @@
-import React from './node_modules/react'
-import { makeStyles } from './node_modules/@material-ui/core/styles';
-import { IconButton, Tooltip, Paper } from './node_modules/@material-ui/core';
+import React from 'react'
+import { makeStyles } from '@material-ui/core/styles';
+import { IconButton, Tooltip, Paper } from '@material-ui/core';
 import Quote from './Quote'
-import FacebookIcon from './node_modules/@material-ui/icons/Facebook';
-import YouTubeIcon from './node_modules/@material-ui/icons/YouTube';
-import InstagramIcon from './node_modules/@material-ui/icons/Instagram';
-import TwitterIcon from './node_modules/@material-ui/icons/Twitter';
+import FacebookIcon from '@material-ui/icons/Facebook';
+import YouTubeIcon from '@material-ui/icons/YouTube';
+import InstagramIcon from '@material-ui/icons/Instagram';
+import TwitterIcon from '@material-ui/icons/Twitter';
 
 const useStyles = makeStyles(theme => ({
     banner: { 
