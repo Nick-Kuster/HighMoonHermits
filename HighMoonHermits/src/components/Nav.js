@@ -58,7 +58,7 @@ export default function Nav (){
             <AppBar className={classes.appBar} position='fixed'>
                 <Toolbar >
                     <IconButton edge='start' className={classes.large} color='inherit' aria-label='menu'>
-                        <Avatar alt='Herman'  src='./src/images/JustHermanWhiteWithBorder.png'/>
+                        <Avatar alt='Herman'  src='https://photos.app.goo.gl/NySczqp9TN5h8PJ58'/>
                     </IconButton>   
                     <Link   className='btn dark-btn btn-space'
                             to={{

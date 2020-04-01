@@ -85,11 +85,11 @@ function VideoGrid() {
     return(
         <React.Fragment>
         <Paper className={classes.paperHeader}>            
-            <img className={classes.imageFit} src='./src/images/JustHerman.png'/>
+            <img className={classes.imageFit} src='https://photos.app.goo.gl/NjGksKvB8YRLiNS57'/>
             <Typography variant='h1'>
                 Videos
             </Typography>            
-            <img className={classes.imageFit} src='./src/images/JustHerman.png'/>
+            <img className={classes.imageFit} src='https://photos.app.goo.gl/NjGksKvB8YRLiNS57'/>
         </Paper>
         <div className={classes.root}>
             <Paper className={classes.paper}>
