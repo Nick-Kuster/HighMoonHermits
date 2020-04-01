@@ -81,15 +81,15 @@ function VideoGrid() {
     const classes = useStyles();
     const playlistId = 'PLLB2v7B6Fp2K6lPkCA06goPmN0_e_YDHr';
     const featuredVideoLink = 'https://www.youtube.com/embed/Y8DO47Ucp2g'
-
+//http://localhost:8080/app/images/JustHerman.png
     return(
         <React.Fragment>
         <Paper className={classes.paperHeader}>            
-            <img className={classes.imageFit} src='http://localhost:8080/app/images/JustHerman.png'/>
+            <img className={classes.imageFit} src='./src/images/JustHerman.png'/>
             <Typography variant='h1'>
                 Videos
             </Typography>            
-            <img className={classes.imageFit} src='http://localhost:8080/app/images/JustHerman.png'/>
+            <img className={classes.imageFit} src='./src/images/JustHerman.png'/>
         </Paper>
         <div className={classes.root}>
             <Paper className={classes.paper}>

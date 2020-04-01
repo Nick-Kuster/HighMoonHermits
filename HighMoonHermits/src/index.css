@@ -1,5 +1,5 @@
 body{
-    background-image: url('http://localhost:8080/app/images/ShadowTransparentBg.png');
+    background-image: url('/src/images/ShadowTransparentBg.png');
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;

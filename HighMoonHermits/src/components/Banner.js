@@ -49,7 +49,7 @@ export default function Banner({children}) {
             <Quote />
         </div>
         <div className={classes.imageContainer}>
-            <img  className={classes.image}src='http://localhost:8080/app/images/ShadowTransparentBg.png'/>   
+            <img  className={classes.image}src='./src/images/ShadowTransparentBg.png'/>   
         </div>
         <div className={classes.socialMedia}>
             <IconButton>
