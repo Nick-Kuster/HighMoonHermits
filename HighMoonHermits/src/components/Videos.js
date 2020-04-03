@@ -81,7 +81,6 @@ function VideoGrid() {
     const classes = useStyles();
     const playlistId = 'PLLB2v7B6Fp2K6lPkCA06goPmN0_e_YDHr';
     const featuredVideoLink = 'https://www.youtube.com/embed/Y8DO47Ucp2g'
-//http://localhost:8080/app/images/JustHerman.png
     return(
         <React.Fragment>
         <Paper className={classes.paperHeader}>            
