@@ -46,34 +46,34 @@ export default function Banner({children}) {
     const classes = useStyles();
     return(
         <Paper className={classes.banner}>    
-        <div className={classes.quote}>
-            <Quote />
-        </div>
-        <div className={classes.imageContainer}>
-            <img  className={classes.image} src={shadowHermit}/>   
-        </div>
-        <div className={classes.socialMedia}>
-            <IconButton>
-                <Tooltip title="Facebook"> 
-                    <FacebookIcon  alt='FacebookIcon'/>
-                </Tooltip>
-            </IconButton>
-            <IconButton>
-                <Tooltip title="YouTube"> 
-                    <YouTubeIcon  alt='YouTubeIcon'/>
-                </Tooltip>
-            </IconButton>
-            <IconButton>
-                <Tooltip title="Instagram"> 
-                    <InstagramIcon alt='InstagramIcon'/>
-                </Tooltip>
-            </IconButton>
-            <IconButton>
-                <Tooltip title="Twitter"> 
-                    <TwitterIcon alt='TwitterIcon'/>
-                </Tooltip>
-            </IconButton>
-        </div>   
+            <div className={classes.quote}>
+                <Quote />
+            </div>
+            <div className={classes.imageContainer}>
+                <img  className={classes.image} src={shadowHermit}/>   
+            </div>
+            <div className={classes.socialMedia}>
+                <IconButton>
+                    <Tooltip title="Facebook"> 
+                        <FacebookIcon  alt='FacebookIcon'/>
+                    </Tooltip>
+                </IconButton>
+                <IconButton>
+                    <Tooltip title="YouTube"> 
+                        <YouTubeIcon  alt='YouTubeIcon'/>
+                    </Tooltip>
+                </IconButton>
+                <IconButton>
+                    <Tooltip title="Instagram"> 
+                        <InstagramIcon alt='InstagramIcon'/>
+                    </Tooltip>
+                </IconButton>
+                <IconButton>
+                    <Tooltip title="Twitter"> 
+                        <TwitterIcon alt='TwitterIcon'/>
+                    </Tooltip>
+                </IconButton>
+            </div>   
         </Paper>
     )
 }

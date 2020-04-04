@@ -1,5 +1,5 @@
 import React from 'react'
-import { Typography, Paper } from '@material-ui/core';
+import { Typography, Paper, Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 const hermanUrl = 'https://i.imgur.com/jOeu3qK.png';
 const useStyles = makeStyles(theme => ({
@@ -11,13 +11,13 @@ const useStyles = makeStyles(theme => ({
         opacity: .98
     },    
     paperHeader: {
-        display: 'flex',
-        flexGrow: 1,
-        flexWrap: 'wrap',
+        // display: 'flex',
+        // flexGrow: 1,
+        // flexWrap: 'wrap',
         padding: theme.spacing(4),     
         margin: 'auto',
-        alignContent: 'center',
-        justifyContent: 'space-around',
+        // alignContent: 'center',
+        // justifyContent: 'space-around',
         opacity: .98,
         background: '#ddd'
     },
@@ -83,12 +83,20 @@ function VideoGrid() {
     const featuredVideoLink = 'https://www.youtube.com/embed/Y8DO47Ucp2g'
     return(
         <React.Fragment>
-        <Paper className={classes.paperHeader}>            
-            <img className={classes.imageFit} src={hermanUrl}/>
-            <Typography variant='h1'>
-                Videos
-            </Typography>            
-            <img className={classes.imageFit} src={hermanUrl}/>
+        <Paper className={classes.paperHeader}>  
+            <Grid container spacing={5} align="center" justify="space-between">  
+                <Grid item md={4} >                   
+                    <img className={classes.imageFit} src={hermanUrl}/>
+                </Grid>
+                <Grid item md={4}>
+                    <Typography variant='h1'>
+                        Videos
+                    </Typography>  
+                </Grid>
+                <Grid item md={4}>               
+                    <img className={classes.imageFit} src={hermanUrl}/>  
+                </Grid>
+            </Grid>
         </Paper>
         <div className={classes.root}>
             <Paper className={classes.paper}>

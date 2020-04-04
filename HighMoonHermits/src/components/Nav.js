@@ -95,19 +95,17 @@ export default function Nav (){
                         Contact
                     </Typography>  
                     <div>
-                    <IconButton
-                        color="inherit"
-                        aria-label="open drawer"
-                        edge="end"
-                        onClick={handleDrawerOpen}
-                        className={clsx(open && classes.hide)}
-                    >
-                        <QueueMusicIcon />
-                    </IconButton>
-                    </div>
-                   
-                </Toolbar>
-               
+                        <IconButton
+                            color="inherit"
+                            aria-label="open drawer"
+                            edge="end"
+                            onClick={handleDrawerOpen}
+                            className={clsx(open && classes.hide)}
+                        >
+                            <QueueMusicIcon />
+                        </IconButton>
+                    </div>                   
+                </Toolbar>               
             </AppBar>          
             <Drawer        
                 classes={{paper: classes.drawerPaper}}   
