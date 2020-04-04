@@ -43,10 +43,11 @@ const theme = createMuiTheme({
 class App extends React.Component{
 
   state = {
-    width: window.innerWidth
+    width: 500
   } 
 
   componentWillMount() {
+    this.setState({ width: window.innerWidth });
     window.addEventListener('resize', this.handleWindowSizeChange);
   }
   
