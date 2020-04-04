@@ -6,20 +6,8 @@ import SoundCloud from './SoundCloud';
 import QueueMusicIcon from '@material-ui/icons/QueueMusic';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import { MediaConsumer } from '../contexts/media';
 
-//     primary: {
-//       light: '#a98274',
-//       main: '#795548',
-//       dark: '#4b2c20',
-//       contrastText: '#fff',
-//     },
-//     secondary: {
-//       light: '#787469',
-//       main: '#4c493e',
-//       dark: '#242218',
-//       contrastText: '#fff',
-//     },
-// },
 const hermanUrl = 'https://i.imgur.com/jOeu3qK.png';
 const useStyles = makeStyles(theme => ({
     appBar:{
@@ -45,9 +33,10 @@ const useStyles = makeStyles(theme => ({
     navLink: {
         background: theme.palette.primary.main,
         padding: '20',
+        width: '100%'
     },
     navLinkNoBg: {
-        padding: '10',
+        padding: '20',
         width: '100%'
     },
     navGridItem: {
@@ -60,8 +49,7 @@ const activeStyle = {
 }
 
 
-function NavButton({ path, text }){    
-    
+function NavButton({ path, text }){        
     const classes = useStyles();
     return(
         <React.Fragment>
@@ -80,7 +68,7 @@ function NavButton({ path, text }){
     )        
 }
 
-export default function Nav (){
+function DesktopNav() {
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
     const theme = useTheme();
@@ -91,10 +79,10 @@ export default function Nav (){
 
     const handleDrawerClose = () => {
         setOpen(false);
-    };    
-
+    };
+    
     return(
-        <React.Fragment>  
+        <React.Fragment>
             <Paper className={classes.appBar}>
                 <Grid container spacing={1}  justify="space-between">  
                     <Grid item md={1}>
@@ -131,7 +119,26 @@ export default function Nav (){
                     </div>
                 </div>               
             </Drawer>
-            <Toolbar id='back-to-top-anchor'/>  
-        </React.Fragment>        
+            <Toolbar id='back-to-top-anchor'/>   
+        </React.Fragment>
+                
     )
 }
+
+export default function Nav (){
+    
+
+      
+
+    return(
+        <MediaConsumer>         
+            {({ width }) => (
+                width > 500 ? <DesktopNav/> : <div>mobile</div>
+            )} 
+                  
+        </MediaConsumer>
+       
+    )
+}
+
+{/*      */}

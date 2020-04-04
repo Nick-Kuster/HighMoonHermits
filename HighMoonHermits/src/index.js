@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import './index.css'
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { MediaProvider } from './contexts/media'
 import Videos from './components/Videos';
 import Home from './components/Home';
 import Nav from './components/Nav';
@@ -40,18 +41,39 @@ const theme = createMuiTheme({
 //  -Lifecycle
 //  -UI
 class App extends React.Component{
+
+  state = {
+    width: window.innerWidth
+  } 
+
+  componentWillMount() {
+    window.addEventListener('resize', this.handleWindowSizeChange);
+  }
+  
+  // make sure to remove the listener
+  // when the component is not mounted anymore
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.handleWindowSizeChange);
+  }
+  
+  handleWindowSizeChange = () => {
+    this.setState({ width: window.innerWidth });
+  };
+
   render(){  
       return ( //JSX
         <Router>
            <ThemeProvider theme={theme}>    
-              <Nav/>
-              <Switch>
-                <Route exact path='/' component={Home}/>
-                <Route exact path='/videos' component={Videos}/>
-                <Route render={() => <h1>404</h1>}/>
-              </Switch>
-              <Banner></Banner>            
-              <BackToTop/>    
+              <MediaProvider value={this.state}>
+                <Nav/>
+                <Switch>
+                  <Route exact path='/' component={Home}/>
+                  <Route exact path='/videos' component={Videos}/>
+                  <Route render={() => <h1>404</h1>}/>
+                </Switch>
+                <Banner></Banner>            
+                <BackToTop/>   
+              </MediaProvider>               
            </ThemeProvider>
         </Router>       
       ) 
