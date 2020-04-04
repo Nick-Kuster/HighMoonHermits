@@ -68,7 +68,7 @@ function NavButton({ path, text }){
     )        
 }
 
-function DesktopNav() {
+function DesktopNav( {width} ) {
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
     const theme = useTheme();
@@ -80,7 +80,7 @@ function DesktopNav() {
     const handleDrawerClose = () => {
         setOpen(false);
     };
-    
+
     return(
         <React.Fragment>
             <Paper className={classes.appBar}>
@@ -97,7 +97,7 @@ function DesktopNav() {
                     <Grid item md={1} className={classes.navGridItem}>
                         <Button className={classes.navLinkNoBg} 
                                 onClick={handleDrawerOpen}>
-                                <Typography  variant="h6" >Playlist <QueueMusicIcon/></Typography>       
+                                <Typography  variant="h6" >{width} <QueueMusicIcon/></Typography>       
                         </Button>      
                     </Grid>
                 </Grid>  
@@ -133,12 +133,10 @@ export default function Nav (){
     return(
         <MediaConsumer>         
             {({ width }) => (
-                width > 500 ? <DesktopNav/> : <div>mobile</div>
+                width > 500 ? <DesktopNav width={width} /> : <div>mobile</div>
             )} 
                   
         </MediaConsumer>
        
     )
 }
-
-{/*      */}
