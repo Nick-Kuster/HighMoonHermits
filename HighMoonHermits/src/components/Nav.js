@@ -1,44 +1,84 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import clsx from 'clsx';
-import { AppBar, Toolbar, Typography, IconButton, Avatar, Drawer } from '@material-ui/core';
+import { NavLink } from 'react-router-dom';
+import { Toolbar, Typography, IconButton, Avatar, Drawer,Grid, Button, Paper } from '@material-ui/core';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import SoundCloud from './SoundCloud';
 import QueueMusicIcon from '@material-ui/icons/QueueMusic';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+
+//     primary: {
+//       light: '#a98274',
+//       main: '#795548',
+//       dark: '#4b2c20',
+//       contrastText: '#fff',
+//     },
+//     secondary: {
+//       light: '#787469',
+//       main: '#4c493e',
+//       dark: '#242218',
+//       contrastText: '#fff',
+//     },
+// },
 const hermanUrl = 'https://i.imgur.com/jOeu3qK.png';
 const useStyles = makeStyles(theme => ({
-    large: {
-        width: theme.spacing(7),
-        height: theme.spacing(7),
-        marginRight: theme.spacing(2),
-    },
-    title: {
-        flexGrow: 2
-    },
     appBar:{
         marginBottom:'0px',
         background: theme.palette.primary.dark,
+        paddingLeft: '50',
+        paddingRight: '50',
+        paddingBottom: '10',
+        paddingTop: '10',
         opacity: .85,
         '& h6': {
-            marginRight: '50'
+           color: "#fff"
         }
     },
-    menu: {
-        display: 'flex',
-        alignContent: 'center',
-        justifyContent: 'center',
-        background: theme.palette.primary.light,
+    avatar: {
+        width: '100%',
+        height: '100%',
+        objectFit: 'contain'
     },
-    title: {
-        flexGrow: 1,
-    },
-    drawerPaper: {
+    drawer: {
         background: '#ddd'
+    },
+    navLink: {
+        background: theme.palette.primary.main,
+        padding: '20',
+    },
+    navLinkNoBg: {
+        padding: '10',
+        width: '100%'
+    },
+    navGridItem: {
+        marginTop: '5'        
     }
 }));
 
+const activeStyle = {
+    background: '#787469'
+}
+
+
+function NavButton({ path, text }){    
+    
+    const classes = useStyles();
+    return(
+        <React.Fragment>
+            <Grid item md={1} className={classes.navGridItem} >                  
+                <NavLink 
+                    to={path}
+                    exact
+                    activeStyle={activeStyle}
+                    component={Button}
+                    className={classes.navLink}
+                >
+                    <Typography variant="h6" >{text}</Typography>      
+                </NavLink>
+            </Grid >    
+        </React.Fragment>        
+    )        
+}
 
 export default function Nav (){
     const classes = useStyles();
@@ -54,61 +94,28 @@ export default function Nav (){
     };    
 
     return(
-        <React.Fragment>                    
-            <AppBar className={classes.appBar} position='fixed'>
-                <Toolbar >
-                    <IconButton edge='start' className={classes.large} color='inherit' aria-label='menu'>
-                        <Avatar alt='Herman'  src={hermanUrl}/>
-                    </IconButton>   
-                    <Link   className='btn dark-btn btn-space'
-                            to={{
-                                pathname: '/'
-                            }}
-                    >
-                            <Typography variant="h6" >
-                                Home
-                            </Typography> 
-                    </Link>
-                     
-                    <Typography variant="h6" >
-                        About
-                    </Typography> 
-                    <Link   className='btn dark-btn btn-space'
-                            to={{
-                                pathname: '/videos'
-                            }}
-                    >
-                            <Typography variant="h6" >
-                                Videos
-                            </Typography> 
-                    </Link>
-                    <Typography variant="h6" >
-                        Photos
-                    </Typography> 
-                    <Typography variant="h6" >
-                        Lyrics
-                    </Typography> 
-                    <Typography variant="h6" >
-                        Store
-                    </Typography> 
-                    <Typography variant="h6" className={classes.title}>
-                        Contact
-                    </Typography>  
-                    <div>
-                        <IconButton
-                            color="inherit"
-                            aria-label="open drawer"
-                            edge="end"
-                            onClick={handleDrawerOpen}
-                            className={clsx(open && classes.hide)}
-                        >
-                            <QueueMusicIcon />
-                        </IconButton>
-                    </div>                   
-                </Toolbar>               
-            </AppBar>          
+        <React.Fragment>  
+            <Paper className={classes.appBar}>
+                <Grid container spacing={1}  justify="space-between">  
+                    <Grid item md={1}>
+                        <img className={classes.avatar} src={hermanUrl}/>
+                    </Grid>
+                    <NavButton path='/' text='Home'/>
+                    <NavButton path='null' text='About'/>
+                    <NavButton path='/videos' text='Videos'/>
+                    <NavButton path='null' text='Photos'/>
+                    <NavButton path='null' text='Store'/> 
+                    <NavButton path='null' text='Contact'/>
+                    <Grid item md={1} className={classes.navGridItem}>
+                        <Button className={classes.navLinkNoBg} 
+                                onClick={handleDrawerOpen}>
+                                <Typography  variant="h6" >Playlist <QueueMusicIcon/></Typography>       
+                        </Button>      
+                    </Grid>
+                </Grid>  
+            </Paper>                      
             <Drawer        
-                classes={{paper: classes.drawerPaper}}   
+                classes={{paper: classes.drawer}}   
                 variant="persistent"
                 anchor="right"
                 open={open}

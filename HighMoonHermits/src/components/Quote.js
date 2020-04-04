@@ -40,8 +40,7 @@ export default class Quote extends React.Component {
     componentDidMount(){
         this.nextQuote();        
         this.interval = setInterval(() => {
-            console.log("Change")
-            this.nextQuote(); //this function change the index state. 
+            this.nextQuote(); 
           }, 7000);
     }
     componentWillUnmount(){

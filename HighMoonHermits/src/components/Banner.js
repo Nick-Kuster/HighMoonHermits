@@ -42,7 +42,7 @@ const useStyles = makeStyles(theme => ({
     },
 }));
   
-export default function Banner({children}) {
+export default function Banner() {
     const classes = useStyles();
     return(
         <Paper className={classes.banner}>    
