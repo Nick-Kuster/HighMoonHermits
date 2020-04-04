@@ -47,7 +47,7 @@ class App extends React.Component{
   } 
 
   componentWillMount() {
-    this.setState({ width: window.innerWidth });
+    this.setState({ width: screen.width });
     window.addEventListener('resize', this.handleWindowSizeChange);
   }
   
@@ -58,7 +58,7 @@ class App extends React.Component{
   }
   
   handleWindowSizeChange = () => {
-    this.setState({ width: window.innerWidth });
+    this.setState({ width: screen.width });
   };
 
   render(){  
