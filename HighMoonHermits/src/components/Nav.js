@@ -170,7 +170,7 @@ export default function Nav (){
     return(
         <MediaConsumer>         
                         {({ width }) => (
-        width > 500 ? <DesktopNav /> : <MobileNav/>
+        width > 500 ? <DesktopNav /> : <DesktopNav/>
     )}
         </MediaConsumer>       
     )
