@@ -72,7 +72,7 @@ class App extends React.Component{
                   <Route exact path='/videos' component={Videos}/>
                   <Route render={() => <h1>404</h1>}/>
                 </Switch>
-                <Banner></Banner>            
+                <Banner></Banner>           
                 <BackToTop/>   
               </MediaProvider>               
            </ThemeProvider>

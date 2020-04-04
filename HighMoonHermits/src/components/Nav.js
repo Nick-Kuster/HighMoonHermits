@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { Toolbar, Typography, IconButton, AppBar, Drawer,Grid, Button, Paper } from '@material-ui/core';
+import { Toolbar, Typography, IconButton, AppBar, Drawer,Grid, Button, Paper, ClickAwayListener } from '@material-ui/core';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import SoundCloud from './SoundCloud';
 import QueueMusicIcon from '@material-ui/icons/QueueMusic';
@@ -27,6 +27,7 @@ const useStyles = makeStyles(theme => ({
     mobileAppBar: {
         top: 'auto',
         bottom: 0,
+        height: '15%'
     },
     avatar: {
         width: '100%',
@@ -57,7 +58,7 @@ const useStyles = makeStyles(theme => ({
         top: -30,
         left: 0,
         right: 0,
-        margin: '0 auto',
+        margin: '0 auto'
       },
 }));
 
@@ -91,10 +92,11 @@ function DesktopNav(  ) {
     const theme = useTheme();
 
     const handleDrawerOpen = () => {
-        setOpen(true);
+        setOpen(!open);
     };
 
     const handleDrawerClose = () => {
+        if(open === false) return
         setOpen(false);
     };
 
@@ -118,27 +120,28 @@ function DesktopNav(  ) {
                         </Button>      
                     </Grid>
                 </Grid>  
-            </Paper>                      
-            <Drawer        
-                classes={{paper: classes.drawer}}   
-                variant="persistent"
-                anchor="right"
-                open={open}
-            >
-                <div  className={classes.drawer}>
-                    <div className={classes.drawerHeader}>
-                        <IconButton onClick={handleDrawerClose}>
-                            {theme.direction === 'rtl' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
-                        </IconButton>
-                    </div>
-                    <div>
-                        <SoundCloud/>
-                    </div>
-                </div>               
-            </Drawer>
+            </Paper>    
+            {/* <Drawer        
+                    classes={{paper: classes.drawer}}   
+                    variant="persistent"
+                    anchor="right"
+                    open={open}   
+                                        
+                >                     */}
+                    <div style={{visibility: open ? 'visible' : 'hidden', position: 'absolute', zIndex: 1, right: 0}}>
+                        {/* <div className={classes.drawerHeader}>
+                            <IconButton onClick={handleDrawerClose}>
+                                {theme.direction === 'rtl' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+                            </IconButton>
+                        </div> */}
+                        <div>
+                            <SoundCloud/>
+                        </div>
+                    </div>                                 
+            {/* </Drawer>   */}
+            
             <Toolbar id='back-to-top-anchor'/>   
-        </React.Fragment>
-                
+        </React.Fragment>                
     )
 }
 
@@ -162,18 +165,13 @@ function MobileNav(){
     )       
 }
 
-export default function Nav (){
-    
-
-      
+export default function Nav (){  
 
     return(
         <MediaConsumer>         
-            {({ width }) => (
-                width > 500 ? <DesktopNav /> : <MobileNav/>
-            )} 
-                  
-        </MediaConsumer>
-       
+                        {({ width }) => (
+        width > 500 ? <DesktopNav /> : <MobileNav/>
+    )}
+        </MediaConsumer>       
     )
 }
