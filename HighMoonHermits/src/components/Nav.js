@@ -1,11 +1,13 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { Toolbar, Typography, IconButton, Avatar, Drawer,Grid, Button, Paper } from '@material-ui/core';
+import { Toolbar, Typography, IconButton, AppBar, Drawer,Grid, Button, Paper } from '@material-ui/core';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import SoundCloud from './SoundCloud';
 import QueueMusicIcon from '@material-ui/icons/QueueMusic';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import MenuIcon from '@material-ui/icons/Menu';
+import Fab from '@material-ui/core/Fab';
 import { MediaConsumer } from '../contexts/media';
 
 const hermanUrl = 'https://i.imgur.com/jOeu3qK.png';
@@ -21,6 +23,10 @@ const useStyles = makeStyles(theme => ({
         '& h6': {
            color: "#fff"
         }
+    },
+    mobileAppBar: {
+        top: 'auto',
+        bottom: 0,
     },
     avatar: {
         width: '100%',
@@ -41,7 +47,18 @@ const useStyles = makeStyles(theme => ({
     },
     navGridItem: {
         marginTop: '5'        
-    }
+    },
+    grow: {
+        flexGrow: 1,
+    },
+    fabButton: {
+        position: 'absolute',
+        zIndex: 1,
+        top: -30,
+        left: 0,
+        right: 0,
+        margin: '0 auto',
+      },
 }));
 
 const activeStyle = {
@@ -68,7 +85,7 @@ function NavButton({ path, text }){
     )        
 }
 
-function DesktopNav( {width} ) {
+function DesktopNav(  ) {
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
     const theme = useTheme();
@@ -97,7 +114,7 @@ function DesktopNav( {width} ) {
                     <Grid item md={1} className={classes.navGridItem}>
                         <Button className={classes.navLinkNoBg} 
                                 onClick={handleDrawerOpen}>
-                                <Typography  variant="h6" >{width} <QueueMusicIcon/></Typography>       
+                                <Typography  variant="h6" >Playlist <QueueMusicIcon/></Typography>       
                         </Button>      
                     </Grid>
                 </Grid>  
@@ -125,6 +142,26 @@ function DesktopNav( {width} ) {
     )
 }
 
+function MobileNav(){    
+    const classes = useStyles();
+    return(
+        <AppBar position='fixed' color='primary' className={classes.mobileAppBar}>
+            <Toolbar>
+                <IconButton edge="start" aria-label="open drawer">
+                    <MenuIcon />
+                </IconButton>
+                <Fab color="secondary" className={classes.fabButton} aria-label="add" >
+                    <ChevronLeftIcon />
+                </Fab>
+                <div className={classes.grow} />
+                <IconButton edge="end"  aria-label="open drawer">
+                    <QueueMusicIcon />
+                </IconButton>
+            </Toolbar>
+        </AppBar>
+    )       
+}
+
 export default function Nav (){
     
 
@@ -133,7 +170,7 @@ export default function Nav (){
     return(
         <MediaConsumer>         
             {({ width }) => (
-                width > 500 ? <DesktopNav width={width} /> : <div>{width}</div>
+                width > 500 ? <DesktopNav /> : <MobileNav/>
             )} 
                   
         </MediaConsumer>
