@@ -42,7 +42,8 @@ const theme = createMuiTheme({
 //  -UI
 class App extends React.Component{
 
-  state = {
+  state = {    
+    selectedPage: 'Home',
     width: 500
   } 
 
@@ -57,26 +58,29 @@ class App extends React.Component{
     window.removeEventListener('resize', this.handleWindowSizeChange);
   }
   
+  updatePage = (selectedPage) => {
+    this.setState({ selectedPage })
+    console.log(selectedPage)
+  }
+  
   handleWindowSizeChange = () => {
     this.setState({ width: screen.width });
   };
 
   render(){  
+    const{ selectedPage } = this.state
       return ( //JSX
-        <Router>
-           <ThemeProvider theme={theme}>    
-              <MediaProvider value={this.state}>
-                <Nav/>
-                <Switch>
-                  <Route exact path='/' component={Home}/>
-                  <Route exact path='/videos' component={Videos}/>
-                  <Route render={() => <h1>404</h1>}/>
-                </Switch>
-                <Banner></Banner>           
-                <BackToTop/>   
-              </MediaProvider>               
-           </ThemeProvider>
-        </Router>       
+         <ThemeProvider theme={theme}>    
+            <MediaProvider value={this.state}>
+              <Nav  onUpdatePage={this.updatePage}
+                    selectedPage ={selectedPage}
+              />
+              { selectedPage === 'Home' && <Home/>}              
+              { selectedPage === 'Videos' && <Videos/>}  
+              <Banner></Banner>           
+              <BackToTop/>   
+            </MediaProvider>               
+         </ThemeProvider>   
       ) 
   }
 }
