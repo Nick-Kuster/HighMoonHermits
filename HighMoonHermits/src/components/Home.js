@@ -5,8 +5,7 @@ function getTable () {
   
       AWS.config.region = 'us-east-2'; // Region
       AWS.config.credentials = new AWS.CognitoIdentityCredentials({
-          IdentityPoolId: process.env.REACT_APP_IDENTITY_POOL_ID,
-          IdentityId:  process.env.REACT_APP_IDENTITY_ID
+          IdentityPoolId: 'us-east-2:98e81336-0bc7-45fe-b9fe-a59a42f11151',
       });
     var docClient = new AWS.DynamoDB.DocumentClient();
     var params = {
