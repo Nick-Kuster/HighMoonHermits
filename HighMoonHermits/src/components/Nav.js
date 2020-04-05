@@ -8,6 +8,8 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import MenuIcon from '@material-ui/icons/Menu';
 import Fab from '@material-ui/core/Fab';
+import Videos from './Videos';
+import Home from './Home';
 import { MediaConsumer } from '../contexts/media';
 
 const hermanUrl = 'https://i.imgur.com/jOeu3qK.png';
@@ -38,7 +40,7 @@ const useStyles = makeStyles(theme => ({
         background: '#ddd'
     },
     navLink: {
-        background: theme.palette.primary.main,
+       
         padding: '20',
         width: '100%'
     },
@@ -59,37 +61,30 @@ const useStyles = makeStyles(theme => ({
         left: 0,
         right: 0,
         margin: '0 auto'
-      },
+    },
+    selected: {
+       background: theme.palette.primary.light
+    },
+    unselected: {
+    }
 }));
 
-const activeStyle = {
-    background: '#787469'
-}
-
-
-function NavButton({ path, text }){        
+function NavButton({ page, selectedPage, onUpdatePage }){        
     const classes = useStyles();
     return(
-        <React.Fragment>
-            <Grid item md={1} className={classes.navGridItem} >                  
-                <NavLink 
-                    to={path}
-                    exact
-                    activeStyle={activeStyle}
-                    component={Button}
-                    className={classes.navLink}
-                >
-                    <Typography variant="h6" >{text}</Typography>      
-                </NavLink>
-            </Grid >    
-        </React.Fragment>        
+        <Grid item md={1} className={classes.navGridItem} >     
+            <Button variant='contained' color='primary' className={page === selectedPage ? classes.selected : classes.unselected} onClick={() => onUpdatePage(page)}>
+                <Typography className={classes.navLink} variant="h6" >{page}</Typography>     
+            </Button> 
+        </Grid >           
     )        
 }
 
-function DesktopNav(  ) {
+function DesktopNav({ onUpdatePage, selectedPage }) {
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
     const theme = useTheme();
+    const pages = ['Home', 'About', 'Videos', 'Photos', 'Store', 'Contact']
 
     const handleDrawerOpen = () => {
         setOpen(!open);
@@ -99,7 +94,6 @@ function DesktopNav(  ) {
         if(open === false) return
         setOpen(false);
     };
-
     return(
         <React.Fragment>
             <Paper className={classes.appBar}>
@@ -107,12 +101,9 @@ function DesktopNav(  ) {
                     <Grid item md={1}>
                         <img className={classes.avatar} src={hermanUrl}/>
                     </Grid>
-                    <NavButton path='/' text='Home'/>
-                    <NavButton path='null' text='About'/>
-                    <NavButton path='/videos' text='Videos'/>
-                    <NavButton path='null' text='Photos'/>
-                    <NavButton path='null' text='Store'/> 
-                    <NavButton path='null' text='Contact'/>
+                    {pages.map((page) => 
+                         <NavButton page={page} selectedPage={selectedPage} onUpdatePage={onUpdatePage}/>  
+                    )}
                     <Grid item md={1} className={classes.navGridItem}>
                         <Button className={classes.navLinkNoBg} 
                                 onClick={handleDrawerOpen}>
@@ -121,15 +112,8 @@ function DesktopNav(  ) {
                     </Grid>
                 </Grid>  
             </Paper>    
-            {/* <Drawer        
-                    classes={{paper: classes.drawer}}   
-                    variant="persistent"
-                    anchor="right"
-                    open={open}   
-                                        
-                >                     */}
                     <div style={{visibility: open ? 'visible' : 'hidden', position: 'absolute', zIndex: 1, right: 0}}>
-                        {/* <div className={classes.drawerHeader}>
+                       {/* <div className={classes.drawerHeader}>
                             <IconButton onClick={handleDrawerClose}>
                                 {theme.direction === 'rtl' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
                             </IconButton>
@@ -137,8 +121,7 @@ function DesktopNav(  ) {
                         <div>
                             <SoundCloud/>
                         </div>
-                    </div>                                 
-            {/* </Drawer>   */}
+                    </div>    
             
             <Toolbar id='back-to-top-anchor'/>   
         </React.Fragment>                
@@ -165,13 +148,18 @@ function MobileNav(){
     )       
 }
 
-export default function Nav (){  
-
+export default function Nav ({ onUpdatePage, selectedPage }){  
     return(
         <MediaConsumer>         
-                        {({ width }) => (
-        width > 500 ? <DesktopNav /> : <DesktopNav/>
-    )}
+        {({ width }) => (
+        width > 500 ? <DesktopNav 
+                        onUpdatePage={onUpdatePage} 
+                        selectedPage={selectedPage}/>
+                    : <DesktopNav 
+                        onUpdatePage={onUpdatePage} 
+                        selectedPage={selectedPage}/>
+            )}
         </MediaConsumer>       
     )
 }
+

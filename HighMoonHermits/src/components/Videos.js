@@ -110,15 +110,7 @@ function VideoGrid() {
 }
 
 export default class Videos extends React.Component{
-    state = {
-        folderPath: null,
-        videos: [],
-        error: null
-    } 
-
     render(){
-        // const {videos} = this.state      
-
         return (
             <React.Fragment>
                 <VideoGrid />
