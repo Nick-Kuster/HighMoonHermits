@@ -47,15 +47,15 @@ class App extends React.Component{
     width: 500
   } 
 
-  componentWillMount() {
+  componentDidMount() {
     this.setState({ width: screen.width });
-    window.addEventListener('resize', this.handleWindowSizeChange);
+    window.addEventListener('resize', this.handleWindowSizeChange, {passive: true});
   }
   
   // make sure to remove the listener
   // when the component is not mounted anymore
   componentWillUnmount() {
-    window.removeEventListener('resize', this.handleWindowSizeChange);
+    window.removeEventListener('resize', this.handleWindowSizeChange, {passive: true});
   }
   
   updatePage = (selectedPage) => {

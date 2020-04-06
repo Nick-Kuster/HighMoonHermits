@@ -102,7 +102,7 @@ function DesktopNav({ onUpdatePage, selectedPage }) {
                         <img className={classes.avatar} src={hermanUrl}/>
                     </Grid>
                     {pages.map((page) => 
-                         <NavButton page={page} selectedPage={selectedPage} onUpdatePage={onUpdatePage}/>  
+                         <NavButton key={page} page={page} selectedPage={selectedPage} onUpdatePage={onUpdatePage}/>  
                     )}
                     <Grid item md={1} className={classes.navGridItem}>
                         <Button className={classes.navLinkNoBg} 

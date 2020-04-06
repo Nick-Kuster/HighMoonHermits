@@ -20,9 +20,11 @@
     "aws-sdk": "^2.653.0",
     "clsx": "^1.1.0",
     "dotenv-webpack": "^1.7.0",
+    "interweave": "^12.5.0",
     "masonry-layout": "^4.2.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-masonry-component": "^6.2.1",
     "react-router-dom": "^5.1.2",
     "soundcloud": "^3.3.2"
   },
