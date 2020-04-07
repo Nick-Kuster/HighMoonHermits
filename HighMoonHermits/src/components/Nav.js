@@ -113,16 +113,10 @@ function DesktopNav({ onUpdatePage, selectedPage }) {
                 </Grid>  
             </Paper>    
                     <div style={{visibility: open ? 'visible' : 'hidden', position: 'absolute', zIndex: 1, right: 0}}>
-                       {/* <div className={classes.drawerHeader}>
-                            <IconButton onClick={handleDrawerClose}>
-                                {theme.direction === 'rtl' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
-                            </IconButton>
-                        </div> */}
                         <div>
                             <SoundCloud/>
                         </div>
-                    </div>    
-            
+                    </div>                
             <Toolbar id='back-to-top-anchor'/>   
         </React.Fragment>                
     )
