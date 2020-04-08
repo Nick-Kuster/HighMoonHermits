@@ -1,7 +1,8 @@
-import React from 'react'
-import { Typography, Paper, Grid } from '@material-ui/core';
+import React from 'react';
+import { Paper } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-const hermanUrl = 'https://i.imgur.com/jOeu3qK.png';
+import Header from './Header';
+
 const useStyles = makeStyles(theme => ({
     root: {
         display:'flex',
@@ -11,13 +12,8 @@ const useStyles = makeStyles(theme => ({
         opacity: .98
     },    
     paperHeader: {
-        // display: 'flex',
-        // flexGrow: 1,
-        // flexWrap: 'wrap',
         padding: theme.spacing(4),     
         margin: 'auto',
-        // alignContent: 'center',
-        // justifyContent: 'space-around',
         opacity: .98,
         background: '#ddd'
     },
@@ -57,22 +53,19 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-function Video ({ link, headerTitle}){
+function Video ({ link, headerImage}){
     const classes = useStyles();
     return(        
-        <div className={classes.videoContainer}>  
-       
-        <iframe className={classes.video} 
-                width='560'
-                height='315' 
-                src={link}
-                frameBorder="0" 
-                allow='autoplay; encrypted-media'
-                allowFullScreen
-        />  
-        <Typography className={classes.videoHeader} variant='h2'>
-                {headerTitle}
-        </Typography> 
+        <div className={classes.videoContainer}>         
+            <Header image={headerImage} variant='subHeader'/>
+            <iframe className={classes.video} 
+                    width='560'
+                    height='315' 
+                    src={link}
+                    frameBorder="0" 
+                    allow='autoplay; encrypted-media'
+                    allowFullScreen
+            />  
         </div>             
     )
 }
@@ -80,28 +73,17 @@ function Video ({ link, headerTitle}){
 function VideoGrid() {
     const classes = useStyles();
     const playlistId = 'PLLB2v7B6Fp2K6lPkCA06goPmN0_e_YDHr';
-    const featuredVideoLink = 'https://www.youtube.com/embed/Y8DO47Ucp2g'
+    const featuredVideoLink = 'https://www.youtube.com/embed/Y8DO47Ucp2g';
+    const videoBanner = 'https://i.imgur.com/czDax4V.png';
+    const featured = 'https://i.imgur.com/L2G6sXf.png';
+    const playlist ='https://i.imgur.com/stWfrRy.png'
     return(
-        <React.Fragment>
-        <Paper className={classes.paperHeader}>  
-            <Grid container spacing={5} align="center" justify="space-between">  
-                <Grid item md={4} >                   
-                    <img className={classes.imageFit} src={hermanUrl}/>
-                </Grid>
-                <Grid item md={4}>
-                    <Typography variant='h1'>
-                        Videos
-                    </Typography>  
-                </Grid>
-                <Grid item md={4}>               
-                    <img className={classes.imageFit} src={hermanUrl}/>  
-                </Grid>
-            </Grid>
-        </Paper>
+    <React.Fragment>
+       <Header image={videoBanner}/>
         <div className={classes.root}>
             <Paper className={classes.paper}>
-                <Video link={featuredVideoLink} headerTitle='Featured'/>             
-                <Video link={`https://www.youtube.com/embed/videoseries?list=${playlistId}`} headerTitle='Playlist'/>           
+                <Video link={featuredVideoLink} headerImage={featured}/>             
+                <Video link={`https://www.youtube.com/embed/videoseries?list=${playlistId}`} headerImage={playlist}/>           
             </Paper>
         </div>
         </React.Fragment>

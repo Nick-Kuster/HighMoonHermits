@@ -5,6 +5,10 @@ import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import { MediaProvider } from './contexts/media'
 import Videos from './components/Videos';
 import Home from './components/Home';
+import About from './components/About';
+import Photos from './components/Photos';
+import Store from './components/Store';
+import Contact from './components/Contact';
 import Nav from './components/Nav';
 import Banner  from './components/Banner';
 import BackToTop from './components/BackToTop';
@@ -75,8 +79,12 @@ class App extends React.Component{
               <Nav  onUpdatePage={this.updatePage}
                     selectedPage ={selectedPage}
               />
-              { selectedPage === 'Home' && <Home/>}              
+              { selectedPage === 'Home' && <Home/>}
+              { selectedPage === 'About' && <About/>}                  
               { selectedPage === 'Videos' && <Videos/>}  
+              { selectedPage === 'Photos' && <Photos/>}    
+              { selectedPage === 'Store' && <Store/>}    
+              { selectedPage === 'Contact' && <Contact/>}    
               <Banner></Banner>           
               <BackToTop/>   
             </MediaProvider>               
