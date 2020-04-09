@@ -5,13 +5,21 @@ import { makeStyles, useTheme } from '@material-ui/core/styles';
 import SoundCloud from './SoundCloud';
 import QueueMusicIcon from '@material-ui/icons/QueueMusic';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import MenuIcon from '@material-ui/icons/Menu';
 import Fab from '@material-ui/core/Fab';
-import Videos from './Videos';
-import Home from './Home';
 import { MediaConsumer } from '../contexts/media';
-
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import MoreVertIcon from '@material-ui/icons/MoreVert';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemAvatar from '@material-ui/core/ListItemAvatar';
+import ListItemText from '@material-ui/core/ListItemText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import Dialog from '@material-ui/core/Dialog';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+import Slide from '@material-ui/core/Slide';
+import CloseIcon from '@material-ui/icons/Close';
 const hermanUrl = 'https://i.imgur.com/jOeu3qK.png';
 const useStyles = makeStyles(theme => ({
     appBar:{
@@ -38,8 +46,7 @@ const useStyles = makeStyles(theme => ({
     drawer: {
         background: '#ddd'
     },
-    navLink: {
-       
+    navLink: {       
         padding: '20',
         width: '100%'
     },
@@ -65,6 +72,36 @@ const useStyles = makeStyles(theme => ({
        background: theme.palette.primary.light
     },
     unselected: {
+    },
+    mobileMenuButton: {
+        width: '10%',
+        height: '20%',
+        zIndex: 1,
+        position: 'fixed',
+        right: 5,
+        bottom: 5
+    },
+    moreVertIcon: {
+        width: '60%',
+        height: '60%'
+    },
+    mobileMenu: {
+        position: 'fixed',
+        left: '50%',
+        bottom: '50%'
+    },
+    mobilePaper: {
+        display: 'flex',
+        justifyContent: 'space-around',
+        flexDirection: 'column',
+    },
+    dialog: {
+        background: 'none'
+    },
+    closeMenuIcon: {
+        position: 'absolute',
+        left: '50%'
+
     }
 }));
 
@@ -76,6 +113,16 @@ function NavButton({ page, selectedPage, onUpdatePage }){
                 <Typography className={classes.navLink} variant="h6" >{page}</Typography>     
             </Button> 
         </Grid >           
+    )        
+}
+
+
+function MobileNavButton({ page, selectedPage, onUpdatePage }){        
+    const classes = useStyles();
+    return(  
+            <Button variant='contained' color='primary' className={page === selectedPage ? classes.selected : classes.unselected} onClick={() => onUpdatePage(page)}>
+                <Typography className={classes.navLink} variant="h6" >{page}</Typography>     
+            </Button>      
     )        
 }
 
@@ -120,35 +167,67 @@ function DesktopNav({ onUpdatePage, selectedPage }) {
         </React.Fragment>                
     )
 }
+const Transition = React.forwardRef(function Transition(props, ref) {
+    return <Slide direction="up" ref={ref} {...props} />;
+});
 
-function MobileNav(){    
+function SimpleDialog({ onUpdatePage, selectedPage, open, onClose }) {
     const classes = useStyles();
-    return(
-        <AppBar position='fixed' color='primary' className={classes.mobileAppBar}>
-            <Toolbar>
-                <IconButton edge="start" aria-label="open drawer">
-                    <MenuIcon />
-                </IconButton>
-                <Fab color="secondary" className={classes.fabButton} aria-label="add" >
-                    <ChevronLeftIcon />
-                </Fab>
-                <div className={classes.grow} />
-                <IconButton edge="end"  aria-label="open drawer">
-                    <QueueMusicIcon />
-                </IconButton>
-            </Toolbar>
-        </AppBar>
-    )       
+    const pages = ['Home', 'About', 'Videos', 'Photos', 'Store', 'Contact']
+    const onUpdatePageClose = (selectedPage) => {
+        onUpdatePage(selectedPage)
+        onClose()
+    };
+    return (
+        <Dialog 
+            PaperProps={{style: {backgroundColor: 'transparent', boxShadow: 'none'}}}
+            fullScreen open={open} className={classes.dialog}  
+            TransitionComponent={Transition}>
+            
+            {pages.map((page) => 
+                <MobileNavButton key={page} page={page} selectedPage={selectedPage} onUpdatePage={onUpdatePageClose}/>  
+            )}
+            <Button variant='contained' color='primary' onClick={onClose}>
+                <Typography  className={classes.navLink} variant="h6" >X</Typography>
+            </Button>  
+           
+        </Dialog>
+    );
+  }
+
+function MobileNav({ onUpdatePage, selectedPage }){    
+    const classes = useStyles();
+    const [open, setOpen] = React.useState(false);
+    const theme = useTheme();
+
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = value => {
+        setOpen(false);
+        setSelectedValue(value);
+    };  
+  
+    return (
+      <div>
+        <Fab color="secondary" className={classes.mobileMenuButton} onClick={handleClickOpen}>
+            <MoreVertIcon className={classes.moreVertIcon} />
+        </Fab>
+        
+        <SimpleDialog open={open} onUpdatePage={onUpdatePage} selectedPage={selectedPage} onClose={handleClose} />
+      </div>
+    );     
 }
 
 export default function Nav ({ onUpdatePage, selectedPage }){  
     return(
         <MediaConsumer>         
-        {({ width }) => (
+        {({ width, height }) => (
         width > 500 ? <DesktopNav 
                         onUpdatePage={onUpdatePage} 
                         selectedPage={selectedPage}/>
-                    : <DesktopNav 
+                    : <MobileNav 
                         onUpdatePage={onUpdatePage} 
                         selectedPage={selectedPage}/>
             )}

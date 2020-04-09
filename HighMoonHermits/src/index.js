@@ -68,7 +68,7 @@ class App extends React.Component{
   }
   
   handleWindowSizeChange = () => {
-    this.setState({ width: screen.width });
+    this.setState({ width: screen.width, height: screen.height });
   };
 
   render(){  
