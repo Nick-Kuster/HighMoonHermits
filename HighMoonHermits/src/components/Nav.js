@@ -37,7 +37,7 @@ const useStyles = makeStyles(theme => ({
     mobileAppBar: {
         top: 'auto',
         bottom: 0,
-        height: '15%',
+        height: '8%',
         justifyContent: 'space-around',
         flexDirection: 'row'
     },
@@ -90,8 +90,7 @@ const useStyles = makeStyles(theme => ({
     mobileMenuButton: {
         height: '90%',
         background: 'none',
-        border: 'none',
-        paddingBottom: '150px'
+        border: 'none'
     },
     menuIcon: {
         width: '50%',
