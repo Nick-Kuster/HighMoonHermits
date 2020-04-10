@@ -85,7 +85,7 @@ class App extends React.Component{
               { selectedPage === 'Store' && <Store/>}    
               { selectedPage === 'Contact' && <Contact/>}    
               <Banner></Banner>   
-              {this.state.width < 500 && <div style={{paddingBottom: '5%'}} />}
+              {this.state.width < 500 && <div style={{paddingBottom: '15%'}} />}
               <BackToTop/>   
             </MediaProvider>               
          </ThemeProvider>   
