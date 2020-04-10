@@ -37,7 +37,9 @@ const useStyles = makeStyles(theme => ({
     mobileAppBar: {
         top: 'auto',
         bottom: 0,
-        height: '15%'
+        height: '15%',
+        justifyContent: 'space-around',
+        flexDirection: 'row'
     },
     avatar: {
         width: '100%',
@@ -73,15 +75,17 @@ const useStyles = makeStyles(theme => ({
     },
     unselected: {
     },
-    mobileMenuButton: {
-        zIndex: 1,
-        top: -30,
-        left: 8,
-        right: 0,
-        margin: '0 auto',
-        width: '25%',
-        height: '100%'
-
+    mobileAppBarSpacer:{
+        flexGrow: 1,
+        display: 'flex',
+        justifyContent: 'space-around',
+        alignItems: 'center'
+    },
+    mobileMenuButtonDiv: {
+        flexGrow: 2,
+        display: 'flex',
+        justifyContent: 'space-around',
+        alignItems: 'center'
     },
     menuIcon: {
         width: '60%',
@@ -215,9 +219,13 @@ function MobileNav({ onUpdatePage, selectedPage }){
       <div>
         
         <AppBar position='fixed' color='primary' className={classes.mobileAppBar}>
-            <Fab color="secondary" className={classes.mobileMenuButton} onClick={handleClickOpen}>
-                <MenuIcon className={classes.menuIcon} />
-            </Fab>
+            <div className={classes.mobileAppBarSpacer}> Hello </div>
+            <div className={classes.mobileMenuButtonDiv}>
+                <Fab color="secondary" className={classes.mobileMenuButton} onClick={handleClickOpen}>
+                    <MenuIcon className={classes.menuIcon} />
+                </Fab>
+            </div>
+            <div className={classes.mobileAppBarSpacer}> Hello </div>
         </AppBar>
         <SimpleDialog open={open} onUpdatePage={onUpdatePage} selectedPage={selectedPage} onClose={handleClose} />
       </div>
