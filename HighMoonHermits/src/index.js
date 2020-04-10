@@ -12,7 +12,6 @@ import Contact from './components/Contact';
 import Nav from './components/Nav';
 import Banner  from './components/Banner';
 import BackToTop from './components/BackToTop';
-import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 
 const theme = createMuiTheme({
     palette: {
@@ -38,7 +37,6 @@ const theme = createMuiTheme({
       }
     }
 });
-
 
 // Component
 //  -State
@@ -74,7 +72,8 @@ class App extends React.Component{
   render(){  
     const{ selectedPage } = this.state
       return ( //JSX
-         <ThemeProvider theme={theme}>    
+         <ThemeProvider theme={theme}>  
+            <div id='back-to-top-anchor'/>  
             <MediaProvider value={this.state}>
               <Nav  onUpdatePage={this.updatePage}
                     selectedPage ={selectedPage}
@@ -85,7 +84,8 @@ class App extends React.Component{
               { selectedPage === 'Photos' && <Photos/>}    
               { selectedPage === 'Store' && <Store/>}    
               { selectedPage === 'Contact' && <Contact/>}    
-              <Banner></Banner>           
+              <Banner></Banner>   
+              {this.state.width < 500 && <div style={{paddingBottom: '5%'}} />}
               <BackToTop/>   
             </MediaProvider>               
          </ThemeProvider>   

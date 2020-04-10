@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { Toolbar, Typography, IconButton, AppBar, Drawer,Grid, Button, Paper, ClickAwayListener } from '@material-ui/core';
+import { Typography, IconButton, AppBar, Drawer,Grid, Button, Paper, ClickAwayListener } from '@material-ui/core';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import SoundCloud from './SoundCloud';
 import QueueMusicIcon from '@material-ui/icons/QueueMusic';
@@ -13,6 +13,8 @@ import MenuItem from '@material-ui/core/MenuItem';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
+
+import BackToTop from './BackToTop';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import ListItemText from '@material-ui/core/ListItemText';
 import DialogTitle from '@material-ui/core/DialogTitle';
@@ -82,7 +84,7 @@ const useStyles = makeStyles(theme => ({
         alignItems: 'center'
     },
     mobileMenuButtonDiv: {
-        flexGrow: 2,
+        flexGrow: 1,
         display: 'flex',
         justifyContent: 'space-around',
         alignItems: 'center'
@@ -137,20 +139,22 @@ function MobileNavButton({ page, selectedPage, onUpdatePage }){
     )        
 }
 
+
+
 function DesktopNav({ onUpdatePage, selectedPage }) {
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
     const theme = useTheme();
     const pages = ['Home', 'About', 'Videos', 'Photos', 'Store', 'Contact']
-
     const handleDrawerOpen = () => {
         setOpen(!open);
     };
-
+    
     const handleDrawerClose = () => {
         if(open === false) return
         setOpen(false);
     };
+    
     return(
         <React.Fragment>
             <Paper className={classes.appBar}>
@@ -169,12 +173,11 @@ function DesktopNav({ onUpdatePage, selectedPage }) {
                     </Grid>
                 </Grid>  
             </Paper>    
-                    <div style={{visibility: open ? 'visible' : 'hidden', position: 'absolute', zIndex: 1, right: 0}}>
-                        <div>
-                            <SoundCloud/>
-                        </div>
-                    </div>                
-            <Toolbar id='back-to-top-anchor'/>   
+            <div style={{visibility: open ? 'visible' : 'hidden', position: 'absolute', zIndex: 1, right: 0}}>
+                <div>
+                    <SoundCloud/>
+                </div>
+            </div>                 
         </React.Fragment>                
     )
 }
@@ -219,22 +222,64 @@ function MobileNav({ onUpdatePage, selectedPage }){
         setOpen(false);
         setSelectedValue(value);
     };  
+
+    const handleDrawerOpen = () => {
+        setPlaylistOpen(!playlistOpen);
+        console.log('he' + playlistOpen)
+    };
+    
+    const handleDrawerClose = () => {
+        if(playlistOpen === false) return
+        setPlaylistOpen(false);
+    };    
   
     return (
-      <div>
+      <React.Fragment>
         
         <AppBar position='fixed' color='primary' className={classes.mobileAppBar}>
-            <div className={classes.mobileAppBarSpacer}> Hello </div>
+            <div className={classes.mobileAppBarSpacer}>
+               <Playlist/>
+            </div>
             <div className={classes.mobileMenuButtonDiv}>
                 <Button  className={classes.mobileMenuButton} onClick={handleClickOpen}>
                         <MenuIcon className={classes.menuIcon} />
                 </Button> 
             </div>
-            <div className={classes.mobileAppBarSpacer}> Hello </div>
+            
+        <BackToTop/>
         </AppBar>
         <SimpleDialog open={open} onUpdatePage={onUpdatePage} selectedPage={selectedPage} onClose={handleClose} />
-      </div>
+          
+      </React.Fragment>
     );     
+}
+
+function Playlist(){
+    const classes = useStyles();
+    const [open, setOpen] = React.useState(false);
+
+    const handleDrawerOpen = () => {
+        setOpen(!open);
+    };
+    
+    const handleDrawerClose = () => {
+        if(open === false) return
+        setOpen(false);
+    };
+
+    return (
+        <React.Fragment>
+            <Button className={classes.navLinkNoBg} 
+            onClick={handleDrawerOpen}>
+                <Typography  variant="h6" >Playlist <QueueMusicIcon/></Typography>       
+            </Button>   
+            <div style={{visibility: open ? 'visible' : 'hidden', position: 'absolute', zIndex: 1, right: 0}}>
+                <div>
+                    <SoundCloud/>
+                </div>
+            </div>  
+        </React.Fragment> 
+    )
 }
 
 export default function Nav ({ onUpdatePage, selectedPage }){  
