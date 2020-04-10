@@ -87,9 +87,15 @@ const useStyles = makeStyles(theme => ({
         justifyContent: 'space-around',
         alignItems: 'center'
     },
+    mobileMenuButton: {
+        height: '90%',
+        background: 'none',
+        border: 'none',
+        paddingBottom: '150px'
+    },
     menuIcon: {
-        width: '60%',
-        height: '60%'
+        width: '50%',
+        height: '50%',
     },
     mobileMenu: {
         position: 'fixed',
@@ -221,9 +227,9 @@ function MobileNav({ onUpdatePage, selectedPage }){
         <AppBar position='fixed' color='primary' className={classes.mobileAppBar}>
             <div className={classes.mobileAppBarSpacer}> Hello </div>
             <div className={classes.mobileMenuButtonDiv}>
-                <Fab color="secondary" className={classes.mobileMenuButton} onClick={handleClickOpen}>
-                    <MenuIcon className={classes.menuIcon} />
-                </Fab>
+                <Button  className={classes.mobileMenuButton} onClick={handleClickOpen}>
+                        <MenuIcon className={classes.menuIcon} />
+                </Button> 
             </div>
             <div className={classes.mobileAppBarSpacer}> Hello </div>
         </AppBar>
