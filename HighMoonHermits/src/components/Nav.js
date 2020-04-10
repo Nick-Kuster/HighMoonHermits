@@ -79,7 +79,7 @@ const useStyles = makeStyles(theme => ({
         left: 8,
         right: 0,
         margin: '0 auto',
-        width: '8%',
+        width: '12%',
         height: '100%'
 
     },
