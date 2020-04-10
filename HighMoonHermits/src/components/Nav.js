@@ -74,14 +74,13 @@ const useStyles = makeStyles(theme => ({
     unselected: {
     },
     mobileMenuButton: {
-        width: '10%',
-        height: '20%',
         zIndex: 1,
-        position: 'fixed',
-        right: 5,
-        bottom: 5
+        top: -30,
+        left: 8,
+        right: 0,
+        margin: '0 auto',
     },
-    moreVertIcon: {
+    menuIcon: {
         width: '60%',
         height: '60%'
     },
@@ -211,10 +210,12 @@ function MobileNav({ onUpdatePage, selectedPage }){
   
     return (
       <div>
-        <Fab color="secondary" className={classes.mobileMenuButton} onClick={handleClickOpen}>
-            <MoreVertIcon className={classes.moreVertIcon} />
-        </Fab>
         
+        <AppBar position='fixed' color='primary' className={classes.mobileAppBar}>
+            <Fab color="secondary" className={classes.mobileMenuButton} onClick={handleClickOpen}>
+                <MenuIcon className={classes.menuIcon} />
+            </Fab>
+        </AppBar>
         <SimpleDialog open={open} onUpdatePage={onUpdatePage} selectedPage={selectedPage} onClose={handleClose} />
       </div>
     );     
@@ -224,7 +225,7 @@ export default function Nav ({ onUpdatePage, selectedPage }){
     return(
         <MediaConsumer>         
         {({ width, height }) => (
-        width > 500 ? <DesktopNav 
+        width > 500 ? <MobileNav 
                         onUpdatePage={onUpdatePage} 
                         selectedPage={selectedPage}/>
                     : <MobileNav 
