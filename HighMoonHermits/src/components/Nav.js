@@ -273,10 +273,12 @@ function Playlist(){
             onClick={handleDrawerOpen}>
                 <Typography  variant="h6" >Playlist <QueueMusicIcon/></Typography>       
             </Button>   
-            <div style={{visibility: open ? 'visible' : 'hidden', position: 'absolute', zIndex: 1, right: 0}}>
+            <div style={{visibility: open ? 'visible' : 'hidden', margin: '0 auto', position: 'absolute', zIndex: 1,  bottom: 0, right: 0}}>
                 <div>
                     <SoundCloud/>
+
                 </div>
+               
             </div>  
         </React.Fragment> 
     )
