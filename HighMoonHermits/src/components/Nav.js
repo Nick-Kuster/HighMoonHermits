@@ -79,6 +79,9 @@ const useStyles = makeStyles(theme => ({
         left: 8,
         right: 0,
         margin: '0 auto',
+        width: '8%',
+        height: '100%'
+
     },
     menuIcon: {
         width: '60%',
