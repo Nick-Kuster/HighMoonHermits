@@ -31,7 +31,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function Header({ image, variant = 'pageHeader'}){
     const classes = useStyles();
-    console.log(image)
+    
     return(
         variant === 'pageHeader' ?
         <Paper className={classes.pageHeader}>  

@@ -91,7 +91,7 @@ function blogList({blogs}){
             {blogs.map((blog) => {
                 var author = blog.Author ?? 'High Moon Hermits';
                 return(                    
-                     <Card className={classes.card}>
+                     <Card key={blog.Title} className={classes.card}>
                         <CardHeader
                             avatar={
                                 <Avatar aria-label="recipe" className={classes.avatar}>
@@ -112,9 +112,7 @@ function blogList({blogs}){
                         }
                         
                         <CardContent>
-                            <Typography variant="body2" color="textSecondary"  >
                                 <Markup content={blog.Content}/>
-                            </Typography>
                         </CardContent>
                     </Card>
                 )
@@ -170,10 +168,8 @@ export default class Home extends React.Component {
     
     componentDidMount(){
         getBlogs().then(            
-            blogs => { 
-                 
-                const data = blogs.Items  
-                console.log(data)       
+            blogs => {                  
+                const data = blogs.Items     
                 this.setState({ blogs: data })
             }
         )

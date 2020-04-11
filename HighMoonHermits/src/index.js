@@ -62,7 +62,6 @@ class App extends React.Component{
   
   updatePage = (selectedPage) => {
     this.setState({ selectedPage })
-    console.log(selectedPage)
   }
   
   handleWindowSizeChange = () => {
