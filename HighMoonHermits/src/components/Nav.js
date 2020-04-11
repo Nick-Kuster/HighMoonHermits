@@ -33,9 +33,19 @@ const useStyles = makeStyles(theme => ({
     mobileAppBar: {
         top: 'auto',
         bottom: 0,
-        height: '8%',
+        paddingTop: 10,
+        height: '16%',
         justifyContent: 'space-around',
         flexDirection: 'row'
+    },
+    mobileButtonGrid: {
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center'
+    },
+    mobileButtonGridItem: {
+        flexGrow: 1,
+        height: '10%'
     },
     avatar: {
         width: '100%',
@@ -85,6 +95,7 @@ const useStyles = makeStyles(theme => ({
     },
     mobileMenuButton: {
         height: '90%',
+        flexGrow: 1,
         background: 'none',
         border: 'none'
     },
@@ -127,20 +138,25 @@ function NavButton({ page, selectedPage, onUpdatePage }){
 function MobileNavButton({ page, selectedPage, onUpdatePage }){        
     const classes = useStyles();
     return(  
+        
             <Button variant='contained' color='primary' className={classes.mobileMenuButton} onClick={() => onUpdatePage(page)}>
-                <Typography className={classes.navLink} variant="h6" >    
+                <Grid className={classes.mobileButtonGrid}>
                 {
                     {
-                        'Home': <HomeIcon/>,
-                        'About': <InfoIcon/>,
-                        'Videos': <VideoLibraryIcon/>,
-                        'Photos': <PhotoLibraryIcon/>,
-                        'Store': <StorefrontIcon/>,
-                        'Contact': <ContactMailIcon/>
+                        'Home': <HomeIcon style={{ fontSize: 40}}/>,
+                        'About': <InfoIcon style={{ fontSize: 40}}/>,
+                        'Videos': <VideoLibraryIcon style={{ fontSize: 40}}/>,
+                        'Photos': <PhotoLibraryIcon style={{ fontSize: 40}}/>,
+                        'Store': <StorefrontIcon style={{ fontSize: 40}}/>,
+                        'Contact': <ContactMailIcon style={{ fontSize: 40}}/>
                     }[page]
                 }
+                <Typography className={classes.navLink} variant="h4" >                 
+                {page}
                 </Typography> 
-            </Button>      
+                </Grid>
+            </Button> 
+                 
     )        
 }
 

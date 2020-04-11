@@ -6,13 +6,22 @@ import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 import Fab from '@material-ui/core/Fab';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import Zoom from '@material-ui/core/Zoom';
+import { Button, Typography } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
   root: {
     position: 'fixed',
-    bottom: theme.spacing(2),
-    right: theme.spacing(2),
+    bottom: '0',
+    right: '0',
   },
+  button: {
+    height: '8vh',
+    width: '100vw',
+    backgroundColor: 'gray',
+    borderRadius: 100,
+    border: 'none',
+    opacity: '.5'
+},
 }));
 
 function ScrollTop(props) {
@@ -50,12 +59,16 @@ ScrollTop.propTypes = {
 };
 
 export default function BackToTop(props) {
+  
+  const classes = useStyles();
+
   return (
     <React.Fragment>
         <ScrollTop {...props}>
-            <Fab color="secondary" size="large" aria-label="scroll back to top">
-                <KeyboardArrowUpIcon />
-            </Fab>
+            <Button className={classes.button}>
+              <Typography className={classes.navLink} variant="h2" >Back To Top</Typography>               
+              <KeyboardArrowUpIcon style={{ fontSize: 70}} />
+            </Button>
         </ScrollTop>
     </React.Fragment>
   );
