@@ -2,7 +2,7 @@ import React from 'react';
 import { Paper } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import Header from './Header';
-
+import PageTemplate from './PageTemplate';
 const useStyles = makeStyles(theme => ({
     root: {
         display:'flex',
@@ -30,20 +30,14 @@ const useStyles = makeStyles(theme => ({
         alignContent: 'center',
         justifyContent: 'space-around'
     },
-    videoContainer: {
-        display: 'flex',
-        flexGrow: 1,
-        flexDirection: 'column',
-        alignContent: 'center',
-        justifyContent: 'space-around',
-        alignItems: 'center'
-    },
     videoHeader: {
-        marginBottom: 75,
-        maxHeight: 20
     },
-    video: {
-        marginBottom: 50
+    videoContainer: {       
+        height:'315px'
+    },
+    videoContainerMobile: {
+        height: '500px',
+        width: '100%'
     },
     imageFit: {
         width: '100px',
@@ -53,50 +47,57 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-function Video ({ link, headerImage}){
+function Video ({ link, headerImage, width}){
     const classes = useStyles();
-    return(        
-        <div className={classes.videoContainer}>         
-            <Header image={headerImage} variant='subHeader'/>
-            <iframe className={classes.video} 
-                    width='560'
-                    height='315' 
-                    src={link}
-                    frameBorder="0" 
-                    allow='autoplay; encrypted-media'
-                    allowFullScreen
-            />  
-        </div>             
+    const mobile = width < 500;
+    return(     
+        <React.Fragment>
+            <div className={mobile ? classes.videoContainerMobile : classes.videoContainer}>
+                <Header image={headerImage} variant='subHeader'/>
+                <iframe className={mobile ? classes.videoMobile : classes.video} 
+                        src={link}
+                        width= {mobile ? '100%' : '560px'}                  
+                        height= {mobile ? '100%' : '315px'}
+                        frameBorder='0' 
+                        allow='autoplay; encrypted-media'
+                        allowFullScreen
+                /> 
+            </div>
+            
+        </React.Fragment>     
+                      
     )
 }
 
-function VideoGrid() {
+function VideoGrid({ width }) {
     const classes = useStyles();
     const playlistId = 'PLLB2v7B6Fp2K6lPkCA06goPmN0_e_YDHr';
     const featuredVideoLink = 'https://www.youtube.com/embed/Y8DO47Ucp2g';
     const videoBanner = 'https://i.imgur.com/czDax4V.png';
     const featured = 'https://i.imgur.com/L2G6sXf.png';
-    const playlist ='https://i.imgur.com/stWfrRy.png'
+    const playlist ='https://i.imgur.com/stWfrRy.png';
     return(
-    <React.Fragment>
-       <Header image={videoBanner}/>
-        <div className={classes.root}>
-            <Paper className={classes.paper}>
-                <Video link={featuredVideoLink} headerImage={featured}/>             
-                <Video link={`https://www.youtube.com/embed/videoseries?list=${playlistId}`} headerImage={playlist}/>           
-            </Paper>
-        </div>
-        </React.Fragment>
+    <PageTemplate banner={ videoBanner } width={ width }>
+        <Video link={featuredVideoLink} width={width} headerImage={featured}/>             
+        <Video link={`https://www.youtube.com/embed/videoseries?list=${playlistId}`} width={width} headerImage={playlist}/>      
+    </PageTemplate>
        
     )
 }
 
 export default class Videos extends React.Component{
+    state = {    
+        width: 500
+    } 
+    
+    componentDidMount(){        
+        this.setState({ width: screen.width });
+    }
+
     render(){
+        const{ width } = this.state
         return (
-            <React.Fragment>
-                <VideoGrid />
-            </React.Fragment>
+            <VideoGrid width={width}/>
         )
     }
 }

@@ -11,6 +11,7 @@ import Avatar from '@material-ui/core/Avatar';
 import Divider from '@material-ui/core/Divider';
 import Header from './Header';
 import PageTemplate from './PageTemplate';
+import { MediaConsumer } from '../contexts/media';
 
 const happenings = 'https://i.imgur.com/GZURAsq.png';
 const events = 'https://i.imgur.com/RLVaAr7.png';
@@ -22,13 +23,13 @@ const useStyles = makeStyles(theme => ({
         width: '150px',
         height: '150px',
         maxWidth: '100%',
-    },
-    container: {
-        display: 'flex',
-        justifyContent: 'space-around'
     },    
     blogsGrid: {
         width: '45%'
+    },
+    mobileBlogsGrid: {
+        width: '100%',
+        marginBotton: '40px'
     },
     blog: {
         marginTop: '10px' 
@@ -38,6 +39,9 @@ const useStyles = makeStyles(theme => ({
     },
     eventsGrid: {
         width: '45%'
+    },
+    mobileEventsGrid: {
+        width: '100%'
     },
     event: {
         width: '100%',
@@ -140,33 +144,47 @@ function Event(){
     )
 }
 
-function HomeLayout({blogs}){
+function HomeLayout({blogs, width }){
     const classes = useStyles();
-    return (
-        <PageTemplate banner={hmhBanner}>
-            <div  className={classes.blogsGrid}>
-                <Header image={happenings} variant='subHeader'/>
-                {blogList({blogs})}
-            </div>
-            <div  className={classes.eventsGrid}>                    
-                <Header image={events} variant='subHeader'/>
-                <div className={classes.innerEvent}>                                
-                    <Event/>
-                    <Event/>
-                    <Event/>  
-                </div>
-            </div>   
-        </PageTemplate>
+    const mobile = width < 500;
+    return (        
+            <PageTemplate banner={hmhBanner} width={width}>
+                    {mobile &&
+                        <div className={classes.mobileEventsGrid}>                    
+                            <Header image={events} variant='subHeader'/>
+                            <div className={classes.innerEvent}>                                
+                                <Event/>
+                                <Event/>
+                                <Event/>  
+                            </div>
+                        </div>     
+                    }
+                    <div  className={mobile ? classes.mobileBlogsGrid : classes.blogsGrid}>
+                        <Header image={happenings} variant='subHeader'/>
+                        {blogList({blogs})}
+                    </div>
+                    {!mobile &&
+                        <div  className={classes.eventsGrid}>                    
+                            <Header image={events} variant='subHeader'/>
+                            <div className={classes.innerEvent}>                                
+                                <Event/>
+                                <Event/>
+                                <Event/>  
+                            </div>
+                        </div>     
+                    }    
+            </PageTemplate>
     )
 }
 
-export default class Home extends React.Component {
-    
+export default class Home extends React.Component {    
     state = {    
-        blogs: []
+        blogs: [],
+        width: 500
     } 
     
-    componentDidMount(){
+    componentDidMount(){        
+        this.setState({ width: screen.width });
         getBlogs().then(            
             blogs => {                  
                 const data = blogs.Items     
@@ -174,11 +192,11 @@ export default class Home extends React.Component {
             }
         )
     }
-
+    
     render() {
-        const{ blogs } = this.state
+        const{ blogs, width } = this.state
         return (
-            <HomeLayout blogs={blogs}/>
+            <HomeLayout blogs={blogs} width={width} /> 
         )
     }
 }

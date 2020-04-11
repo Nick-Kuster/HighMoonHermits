@@ -15,14 +15,25 @@ paper: {
     display: 'flex',
     justifyContent: 'space-around'   
 },
+paperVertical: {
+    background:  theme.palette.primary.main,
+    margin: 'auto',
+    opacity: .95,
+    maxWidth: '100%',
+    minHeight: '100%',
+    display: 'flex',
+    justifyContent: 'space-around', 
+    flexDirection: 'column',
+    alignItems: 'center'
+}
 }))
 
-export default function PageTemplate({banner, children}){
+export default function PageTemplate({banner, width, children}){
     const classes = useStyles();
     return (
         <React.Fragment>
             <Header image={banner}/>
-            <Paper className={classes.paper}>
+            <Paper className={width > 500 ? classes.paper : classes.paperVertical}>
                 {children}
             </Paper>
         </React.Fragment>
