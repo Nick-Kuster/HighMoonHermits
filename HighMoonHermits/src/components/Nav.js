@@ -3,7 +3,6 @@ import { Typography, AppBar, Grid, Button, Paper } from '@material-ui/core';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import SoundCloud from './SoundCloud';
 import QueueMusicIcon from '@material-ui/icons/QueueMusic';
-import MenuIcon from '@material-ui/icons/Menu';
 import { MediaConsumer } from '../contexts/media';
 import BackToTop from './BackToTop';
 import Dialog from '@material-ui/core/Dialog';
@@ -14,7 +13,6 @@ import VideoLibraryIcon from '@material-ui/icons/VideoLibrary';
 import PhotoLibraryIcon from '@material-ui/icons/PhotoLibrary';
 import StorefrontIcon from '@material-ui/icons/Storefront';
 import ContactMailIcon from '@material-ui/icons/ContactMail';
-
 
 const hermanUrl = 'https://i.imgur.com/jOeu3qK.png';
 const useStyles = makeStyles(theme => ({
@@ -34,7 +32,7 @@ const useStyles = makeStyles(theme => ({
         top: 'auto',
         bottom: 0,
         paddingTop: 10,
-        height: '16%',
+        height: '16vh',
         justifyContent: 'space-around',
         flexDirection: 'row'
     },
@@ -137,30 +135,26 @@ function NavButton({ page, selectedPage, onUpdatePage }){
 
 function MobileNavButton({ page, selectedPage, onUpdatePage }){        
     const classes = useStyles();
-    return(  
-        
-            <Button variant='contained' color='primary' className={classes.mobileMenuButton} onClick={() => onUpdatePage(page)}>
-                <Grid className={classes.mobileButtonGrid}>
+    return(          
+        <Button variant='contained' color='primary' className={classes.mobileMenuButton} onClick={() => onUpdatePage(page)}>
+            <Grid className={classes.mobileButtonGrid}>
+            {
                 {
-                    {
-                        'Home': <HomeIcon style={{ fontSize: 40}}/>,
-                        'About': <InfoIcon style={{ fontSize: 40}}/>,
-                        'Videos': <VideoLibraryIcon style={{ fontSize: 40}}/>,
-                        'Photos': <PhotoLibraryIcon style={{ fontSize: 40}}/>,
-                        'Store': <StorefrontIcon style={{ fontSize: 40}}/>,
-                        'Contact': <ContactMailIcon style={{ fontSize: 40}}/>
-                    }[page]
-                }
-                <Typography className={classes.navLink} variant="h4" >                 
-                {page}
-                </Typography> 
-                </Grid>
-            </Button> 
-                 
+                    'Home': <HomeIcon style={{ fontSize: 40}}/>,
+                    'About': <InfoIcon style={{ fontSize: 40}}/>,
+                    'Videos': <VideoLibraryIcon style={{ fontSize: 40}}/>,
+                    'Photos': <PhotoLibraryIcon style={{ fontSize: 40}}/>,
+                    'Store': <StorefrontIcon style={{ fontSize: 40}}/>,
+                    'Contact': <ContactMailIcon style={{ fontSize: 40}}/>
+                }[page]
+            }
+            <Typography className={classes.navLink} variant="h4" >                 
+            {page}
+            </Typography> 
+            </Grid>
+        </Button>                  
     )        
 }
-
-
 
 function DesktopNav({ onUpdatePage, selectedPage }) {
     const classes = useStyles();
@@ -185,47 +179,6 @@ function DesktopNav({ onUpdatePage, selectedPage }) {
                     </Grid>
                     {pages.map((page) => 
                          <NavButton key={page} page={page} selectedPage={selectedPage} onUpdatePage={onUpdatePage}/>  
-                    )}
-                    <Grid item md={1} className={classes.navGridItem}>
-                        <Button className={classes.navLinkNoBg} 
-                                onClick={handleDrawerOpen}>
-                                <Typography  variant="h6" >Playlist <QueueMusicIcon/></Typography>       
-                        </Button>      
-                    </Grid>
-                </Grid>  
-            </Paper>    
-            <div style={{visibility: open ? 'visible' : 'hidden', position: 'absolute', zIndex: 1, right: 0}}>
-                <div>
-                    <SoundCloud/>
-                </div>
-            </div>                 
-        </React.Fragment>                
-    )
-}
-
-function MobileNavV2({ onUpdatePage, selectedPage }) {
-    const classes = useStyles();
-    const [open, setOpen] = React.useState(false);
-    const theme = useTheme();
-    const pages = ['Home', 'About', 'Videos', 'Photos', 'Store', 'Contact']
-    const handleDrawerOpen = () => {
-        setOpen(!open);
-    };
-    
-    const handleDrawerClose = () => {
-        if(open === false) return
-        setOpen(false);
-    };
-    
-    return(
-        <React.Fragment>
-            <Paper className={classes.appBar}>
-                <Grid container spacing={1}  justify="space-between">  
-                    <Grid item md={1}>
-                        <img className={classes.avatar} src={hermanUrl}/>
-                    </Grid>
-                    {pages.map((page) => 
-                         <MobileNavButton key={page} page={page} selectedPage={selectedPage} onUpdatePage={onUpdatePage}/>  
                     )}
                     <Grid item md={1} className={classes.navGridItem}>
                         <Button className={classes.navLinkNoBg} 
@@ -284,14 +237,7 @@ function MobileNav({ onUpdatePage, selectedPage }){
         setOpen(false);
         setSelectedValue(value);
     };    
-//     <div className={classes.mobileAppBarSpacer}>
-//     <PlaylistDialog/>
-//  </div>
-//  <div className={classes.mobileMenuButtonDiv}>
-//      <Button  className={classes.mobileMenuButton} onClick={handleClickOpen}>
-//              <MenuIcon className={classes.menuIcon} />
-//      </Button> 
-//  </div> 
+
     return (
       <React.Fragment>        
         <AppBar position='fixed' color='primary' className={classes.mobileAppBar}>
@@ -343,7 +289,7 @@ export default function Nav ({ onUpdatePage, selectedPage }){
     return(
         <MediaConsumer>         
         {({ width, height }) => (
-        width > 500 ? <MobileNav 
+        width > 500 ? <DesktopNav 
                         onUpdatePage={onUpdatePage} 
                         selectedPage={selectedPage}/>
                     : <MobileNav

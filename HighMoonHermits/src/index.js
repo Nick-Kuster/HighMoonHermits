@@ -12,6 +12,7 @@ import Contact from './components/Contact';
 import Nav from './components/Nav';
 import Banner  from './components/Banner';
 import BackToTop from './components/BackToTop';
+import SocialMedia from './components/SocialMedia';
 
 const theme = createMuiTheme({
     palette: {
@@ -83,8 +84,9 @@ class App extends React.Component{
               { selectedPage === 'Photos' && <Photos/>}    
               { selectedPage === 'Store' && <Store/>}    
               { selectedPage === 'Contact' && <Contact/>}    
-              <Banner></Banner>   
-              {this.state.width < 500 && <div style={{paddingBottom: '15%'}} />}
+              <Banner/>   
+              <SocialMedia/>
+              {this.state.width < 500 && <div style={{paddingBottom: '18vh'}}/>}
               <BackToTop/>   
             </MediaProvider>               
          </ThemeProvider>   

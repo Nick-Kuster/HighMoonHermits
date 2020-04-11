@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
-import CssBaseline from '@material-ui/core/CssBaseline';
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 import Fab from '@material-ui/core/Fab';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import Zoom from '@material-ui/core/Zoom';
 import { Button, Typography } from '@material-ui/core';
+import { MediaConsumer } from '../contexts/media';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -57,19 +57,40 @@ ScrollTop.propTypes = {
   children: PropTypes.element.isRequired,
   window: PropTypes.func,
 };
-
-export default function BackToTop(props) {
+function Desktop(){
   
   const classes = useStyles();
 
+  return(
+    <ScrollTop>
+      <Fab color="secondary" size="large" aria-label="scroll back to top">
+          <KeyboardArrowUpIcon/>
+      </Fab>
+    </ScrollTop>
+  )
+}
+
+function Mobile(){
+  
+  const classes = useStyles();
+  return(
+    <ScrollTop >
+        <Button className={classes.button}>
+          <Typography className={classes.navLink} variant="h2" >Back To Top</Typography>               
+          <KeyboardArrowUpIcon style={{ fontSize: 70}} />
+        </Button>
+    </ScrollTop>
+  )
+}
+
+export default function BackToTop(props) { 
+
   return (
-    <React.Fragment>
-        <ScrollTop {...props}>
-            <Button className={classes.button}>
-              <Typography className={classes.navLink} variant="h2" >Back To Top</Typography>               
-              <KeyboardArrowUpIcon style={{ fontSize: 70}} />
-            </Button>
-        </ScrollTop>
-    </React.Fragment>
+    <MediaConsumer>         
+    {({ width, height }) => (
+    width > 500 ? <Desktop/>
+                : <Mobile/>
+        )}
+    </MediaConsumer>      
   );
 }

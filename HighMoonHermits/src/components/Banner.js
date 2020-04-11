@@ -14,16 +14,20 @@ const useStyles = makeStyles(theme => ({
         justifyContent: 'space-around',
         opacity:.98,
         alignItems: 'center',
-        height: '15%',
+        height: '20vh',
         padding: '12px',
         borderRadius: '3px',
         background:  '#ddd',
+        
     },
     imageContainer:{
         flex: 1,
         height: '100%',
-        width: '100%',
         objectFit: 'contain'
+    },
+    quoteImageContainer:{
+        display: 'flex',
+        height: '100%'
     },
     image: {
         width: '100%',
@@ -33,12 +37,6 @@ const useStyles = makeStyles(theme => ({
     quote: {
         flex: 1,
         marginTop: '20px'
-    },
-    socialMedia: {            
-        display: 'flex',    
-        flex: 1,
-        justifyContent: 'space-around',
-        alignItems: 'flex-End'
     }
 }));
   
@@ -48,35 +46,15 @@ export default function Banner() {
         <MediaConsumer>         
             {({ width, height }) => (
                 <React.Fragment>
-                    <Paper className={classes.banner}>    
-                        <div className={classes.quote}>
-                            <Quote />
-                        </div>
-                        <div className={classes.imageContainer}>
-                            <img  className={classes.image} src={shadowHermit}/>   
-                        </div>
-                        <div className={classes.socialMedia}>
-                            <IconButton>
-                                <Tooltip title="Facebook"> 
-                                    <FacebookIcon  alt='FacebookIcon'/>
-                                </Tooltip>
-                            </IconButton>
-                            <IconButton>
-                                <Tooltip title="YouTube"> 
-                                    <YouTubeIcon  alt='YouTubeIcon'/>
-                                </Tooltip>
-                            </IconButton>
-                            <IconButton>
-                                <Tooltip title="Instagram"> 
-                                    <InstagramIcon alt='InstagramIcon'/>
-                                </Tooltip>
-                            </IconButton>
-                            <IconButton>
-                                <Tooltip title="Twitter"> 
-                                    <TwitterIcon alt='TwitterIcon'/>
-                                </Tooltip>
-                            </IconButton>
-                        </div>
+                    <Paper className={classes.banner}> 
+                        <div className={classes.quoteImageContainer}>
+                            <div className={classes.quote}>
+                                <Quote />
+                            </div>
+                            <div className={classes.imageContainer}>
+                                <img  className={classes.image} src={shadowHermit}/>   
+                            </div>
+                        </div>                           
                     </Paper>
                 </React.Fragment>
             )}

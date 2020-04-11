@@ -41,7 +41,7 @@ export default class Quote extends React.Component {
         this.nextQuote();        
         this.interval = setInterval(() => {
             this.nextQuote(); 
-          }, 7000);
+          }, 5000);
     }
     componentWillUnmount(){
         clearInterval(this.interval)
@@ -52,13 +52,13 @@ export default class Quote extends React.Component {
     render () {
         const { selectedQuote, selectedQuoteSource } = this.state
         return(            
-            <Grid container spacing={2} justify="space-between">  
+            <Grid container spacing={2} style={{marginBottom: '15px'}} justify="space-between">  
                 <Grid item md={12} >
-                    <Typography  variant="body1" align="center"><i>"{selectedQuote}"</i> </Typography> 
+                    <Typography  variant="h5" align="center"><i>"{selectedQuote}"</i> </Typography> 
                 </Grid>
 
                 <Grid item md={12}>
-                    <Typography  variant="body1" align="right"><i>--{selectedQuoteSource}</i></Typography>
+                    <Typography  variant="h5" align="right"><i>--{selectedQuoteSource}</i></Typography>
                 </Grid>
             </Grid>          
         )        
