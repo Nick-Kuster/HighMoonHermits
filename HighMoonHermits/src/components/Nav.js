@@ -185,26 +185,20 @@ const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
 });
 
-function SimpleDialog({ onUpdatePage, selectedPage, open, onClose }) {
+function SimpleDialog({ onUpdatePage, selectedPage, open, onClose, children }) {
     const classes = useStyles();
-    const pages = ['Home', 'About', 'Videos', 'Photos', 'Store', 'Contact']
-    const onUpdatePageClose = (selectedPage) => {
-        onUpdatePage(selectedPage)
-        onClose()
-    };
+   
     return (
         <Dialog 
             PaperProps={{style: {backgroundColor: 'transparent', boxShadow: 'none'}}}
             fullScreen open={open} className={classes.dialog}  
             TransitionComponent={Transition}>
             
-            {pages.map((page) => 
-                <MobileNavButton key={page} page={page} selectedPage={selectedPage} onUpdatePage={onUpdatePageClose}/>  
-            )}
+            
+            {children}
             <Button variant='contained' color='primary' onClick={onClose}>
                 <Typography  className={classes.navLink} variant="h6" >X</Typography>
-            </Button>  
-           
+            </Button> 
         </Dialog>
     );
   }
@@ -212,10 +206,59 @@ function SimpleDialog({ onUpdatePage, selectedPage, open, onClose }) {
 function MobileNav({ onUpdatePage, selectedPage }){    
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
-    const theme = useTheme();
+    const theme = useTheme();    
+    const pages = ['Home', 'About', 'Videos', 'Photos', 'Store', 'Contact'];
+    var dialogContent;
 
-    const handleClickOpen = () => {
-        setOpen(true);
+    const onUpdatePageClose = (selectedPage) => {
+        onUpdatePage(selectedPage)
+        setOpen(false);
+    };
+
+    const handleClickOpen = ( dialog ) => {
+        dialogContent = dialog;
+        console.log(dialogContent);
+        setOpen(true)
+    };
+
+    const handleClose = value => {
+        setOpen(false);
+        setSelectedValue(value);
+    };    
+  
+    return (
+      <React.Fragment>        
+        <AppBar position='fixed' color='primary' className={classes.mobileAppBar}>
+            <div className={classes.mobileAppBarSpacer}>
+               <PlaylistDialog/>
+            </div>
+            <div className={classes.mobileMenuButtonDiv}>
+                <Button  className={classes.mobileMenuButton} onClick={handleClickOpen}>
+                        <MenuIcon className={classes.menuIcon} />
+                </Button> 
+            </div>            
+        <BackToTop/>
+        </AppBar>
+        <SimpleDialog open={open} onUpdatePage={onUpdatePage} selectedPage={selectedPage} onClose={handleClose} >
+               {
+                dialogContent === 'nav' ? <SoundCloud/> :
+                <React.Fragment>
+                    {pages.map((page) => 
+                    <MobileNavButton key={page} page={page} selectedPage={selectedPage} onUpdatePage={onUpdatePageClose}/>  
+                    )}      
+                </React.Fragment>                     
+               }
+        </SimpleDialog>
+      </React.Fragment>
+    );     
+}
+
+function PlaylistDialog(){
+    const classes = useStyles();
+    const [open, setOpen] = React.useState(false);
+
+    const handleClickOpen = ( dialog ) => {
+        setOpen(true)
     };
 
     const handleClose = value => {
@@ -223,63 +266,14 @@ function MobileNav({ onUpdatePage, selectedPage }){
         setSelectedValue(value);
     };  
 
-    const handleDrawerOpen = () => {
-        setPlaylistOpen(!playlistOpen);
-        console.log('he' + playlistOpen)
-    };
-    
-    const handleDrawerClose = () => {
-        if(playlistOpen === false) return
-        setPlaylistOpen(false);
-    };    
-  
-    return (
-      <React.Fragment>
-        
-        <AppBar position='fixed' color='primary' className={classes.mobileAppBar}>
-            <div className={classes.mobileAppBarSpacer}>
-               <Playlist/>
-            </div>
-            <div className={classes.mobileMenuButtonDiv}>
-                <Button  className={classes.mobileMenuButton} onClick={handleClickOpen}>
-                        <MenuIcon className={classes.menuIcon} />
-                </Button> 
-            </div>
-            
-        <BackToTop/>
-        </AppBar>
-        <SimpleDialog open={open} onUpdatePage={onUpdatePage} selectedPage={selectedPage} onClose={handleClose} />
-          
-      </React.Fragment>
-    );     
-}
-
-function Playlist(){
-    const classes = useStyles();
-    const [open, setOpen] = React.useState(false);
-
-    const handleDrawerOpen = () => {
-        setOpen(!open);
-    };
-    
-    const handleDrawerClose = () => {
-        if(open === false) return
-        setOpen(false);
-    };
-
     return (
         <React.Fragment>
-            <Button className={classes.navLinkNoBg} 
-            onClick={handleDrawerOpen}>
-                <Typography  variant="h6" >Playlist <QueueMusicIcon/></Typography>       
-            </Button>   
-            <div style={{visibility: open ? 'visible' : 'hidden', margin: '0 auto', position: 'absolute', zIndex: 1,  bottom: 0, right: 0}}>
-                <div>
-                    <SoundCloud/>
-
-                </div>
-               
-            </div>  
+            <Button  className={classes.mobileMenuButton} onClick={handleClickOpen}>
+                        <QueueMusicIcon className={classes.menuIcon} />
+            </Button>
+            <SimpleDialog open={open}  onClose={handleClose} >
+               <SoundCloud/>
+            </SimpleDialog>
         </React.Fragment> 
     )
 }
@@ -288,7 +282,7 @@ export default function Nav ({ onUpdatePage, selectedPage }){
     return(
         <MediaConsumer>         
         {({ width, height }) => (
-        width > 500 ? <MobileNav 
+        width > 500 ? <DesktopNav 
                         onUpdatePage={onUpdatePage} 
                         selectedPage={selectedPage}/>
                     : <MobileNav 
