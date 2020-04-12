@@ -121,7 +121,7 @@ const useStyles = makeStyles(theme => ({
 
     },
     playlistIcon: {
-        maxHeight: '32',
+        maxHeight: '75%',
         width: 'auto'
     }
 }));
@@ -159,6 +159,7 @@ function MobileNavButton({ page, selectedPage, onUpdatePage }){
         <Button variant='contained' color='primary' className={classes.mobileMenuButton} onClick={() => onUpdatePage(page)}>
             <Grid className={classes.mobileButtonGrid}>
                 {
+                    
                     {
                         'Home': <HomeIcon style={{ fontSize: 40}}/>,
                         'About': <InfoIcon style={{ fontSize: 40}}/>,
@@ -166,8 +167,9 @@ function MobileNavButton({ page, selectedPage, onUpdatePage }){
                         'Photos': <PhotoLibraryIcon style={{ fontSize: 40}}/>,
                         'Store': <StorefrontIcon style={{ fontSize: 40}}/>,
                         'Contact': <ContactMailIcon style={{ fontSize: 40}}/>
-                    }[page]
+                    }[page]                    
                 }
+                {page}
             </Grid>
         </Button>                  
     )        
@@ -177,7 +179,7 @@ function DesktopNav({ onUpdatePage, selectedPage }) {
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
     const theme = useTheme();
-    const pages = ['Home', 'About','Photos', 'Videos', 'Contact', 'Store']
+    const pages = ['Home', 'About', 'Videos', 'Photos', 'Store', 'Contact']
     const handleDrawerOpen = () => {
         setOpen(!open);
     };
@@ -191,7 +193,9 @@ function DesktopNav({ onUpdatePage, selectedPage }) {
         <React.Fragment>
             <Paper className={classes.appBar}>
                 <Grid container spacing={1}  justify="space-around">  
-                    
+                    <Grid item md={1}>
+                        <img className={classes.avatar} src={hermanUrl}/>
+                    </Grid>
                     {pages.map((page) => 
                          <NavButton key={page} page={page} selectedPage={selectedPage} onUpdatePage={onUpdatePage}/>  
                     )}
