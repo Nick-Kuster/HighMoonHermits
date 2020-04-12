@@ -22,7 +22,6 @@ const useStyles = makeStyles(theme => ({
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'space-around',
-        maxHeight: '700px'
     },
     mobileRowContainer: {
         display: 'flex',
