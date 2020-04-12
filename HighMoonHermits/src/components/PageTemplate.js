@@ -17,13 +17,14 @@ paper: {
 },
 paperVertical: {
     background:  theme.palette.primary.main,
-    margin: 'auto',
+    paddingBottom: '50px',
     opacity: .95,
     maxWidth: '100%',
     minHeight: '100%',
     display: 'flex',
-    justifyContent: 'space-around', 
+    justifyContent: 'flex-start', 
     flexDirection: 'column',
+    flexWrap: 'wrap',
     alignItems: 'center'
 }
 }))

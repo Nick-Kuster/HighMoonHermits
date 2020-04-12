@@ -1,5 +1,4 @@
 import React from 'react';
-import { Paper } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import Header from './Header';
 import PageTemplate from './PageTemplate';
@@ -78,7 +77,8 @@ function VideoGrid({ width }) {
     const playlist ='https://i.imgur.com/stWfrRy.png';
     return(
     <PageTemplate banner={ videoBanner } width={ width }>
-        <Video link={featuredVideoLink} width={width} headerImage={featured}/>             
+        <Video link={featuredVideoLink} width={width} headerImage={featured}/>   
+        <div style={{height: '200px'}}></div>          
         <Video link={`https://www.youtube.com/embed/videoseries?list=${playlistId}`} width={width} headerImage={playlist}/>      
     </PageTemplate>
        
