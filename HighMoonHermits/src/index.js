@@ -46,7 +46,7 @@ const theme = createMuiTheme({
 class App extends React.Component{
 
   state = {    
-    selectedPage: 'Photos',
+    selectedPage: 'Home',
     width: 500
   } 
 
