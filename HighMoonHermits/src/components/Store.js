@@ -1,6 +1,5 @@
 import React from 'react'
 import PageTemplate from './PageTemplate'
-import DizzyJam from './DizzyJam'
 const banner = 'https://i.imgur.com/AUKrLMu.png'
 export default class About extends React.Component {
 
