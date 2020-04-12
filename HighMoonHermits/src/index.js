@@ -35,6 +35,10 @@ const theme = createMuiTheme({
       },
       h1: {
         fontWeight: 500
+      },
+      h5: {
+        backgroundColor: '#a98274',
+        padding: '30px'
       }
     }
 });
@@ -46,7 +50,7 @@ const theme = createMuiTheme({
 class App extends React.Component{
 
   state = {    
-    selectedPage: 'Home',
+    selectedPage: 'About',
     width: 500
   } 
 
