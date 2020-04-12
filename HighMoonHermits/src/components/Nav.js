@@ -46,8 +46,8 @@ const useStyles = makeStyles(theme => ({
         height: '10%'
     },
     avatar: {
-        width: '100%',
-        height: '100%',
+        width: 'auto',
+        height: '50%',
     },
     drawer: {
         background: '#ddd'
@@ -58,7 +58,8 @@ const useStyles = makeStyles(theme => ({
     },
     navLinkNoBg: {
         padding: '20',
-        width: '100%'
+        width: 'auto',
+        height: '50%'
     },
     navGridItem: {
         marginTop: '5'        
@@ -75,7 +76,7 @@ const useStyles = makeStyles(theme => ({
         margin: '0 auto'
     },
     selected: {
-       background: theme.palette.primary.light
+       background: theme.palette.primary.light,
     },
     unselected: {
     },
@@ -118,15 +119,34 @@ const useStyles = makeStyles(theme => ({
         position: 'absolute',
         left: '50%'
 
+    },
+    playlistIcon: {
+        maxHeight: '32',
+        width: 'auto'
     }
 }));
 
 function NavButton({ page, selectedPage, onUpdatePage }){        
     const classes = useStyles();
+    const contact = 'https://i.imgur.com/s7D59Yp.png'
+    const videos = 'https://i.imgur.com/ks2cog9.png'
+    const home = 'https://i.imgur.com/Fr9hFwX.png'
+    const about = 'https://i.imgur.com/aEzODow.png'
+    const photos = 'https://i.imgur.com/oGpaRDP.png'
+    const store = 'https://i.imgur.com/we4gq0k.png'
     return(
         <Grid item md={1} className={classes.navGridItem} >     
-            <Button variant='contained' color='primary' className={page === selectedPage ? classes.selected : classes.unselected} onClick={() => onUpdatePage(page)}>
-                <Typography className={classes.navLink} variant="h6" >{page}</Typography>     
+            <Button variant='contained' color='primary' className={page === selectedPage ? classes.selected : classes.unselected} onClick={() => onUpdatePage(page)}>                    
+                {
+                    {
+                        'Home': <img src={home}/>,
+                        'About': <img src={about}/>,
+                        'Videos': <img src={videos}/>,
+                        'Photos': <img src={photos}/>,
+                        'Store': <img src={store}/>,
+                        'Contact': <img src={contact}/>
+                    }[page]
+                }
             </Button> 
         </Grid >           
     )        
@@ -138,19 +158,16 @@ function MobileNavButton({ page, selectedPage, onUpdatePage }){
     return(          
         <Button variant='contained' color='primary' className={classes.mobileMenuButton} onClick={() => onUpdatePage(page)}>
             <Grid className={classes.mobileButtonGrid}>
-            {
                 {
-                    'Home': <HomeIcon style={{ fontSize: 40}}/>,
-                    'About': <InfoIcon style={{ fontSize: 40}}/>,
-                    'Videos': <VideoLibraryIcon style={{ fontSize: 40}}/>,
-                    'Photos': <PhotoLibraryIcon style={{ fontSize: 40}}/>,
-                    'Store': <StorefrontIcon style={{ fontSize: 40}}/>,
-                    'Contact': <ContactMailIcon style={{ fontSize: 40}}/>
-                }[page]
-            }
-            <Typography className={classes.navLink} variant="h4" >                 
-            {page}
-            </Typography> 
+                    {
+                        'Home': <HomeIcon style={{ fontSize: 40}}/>,
+                        'About': <InfoIcon style={{ fontSize: 40}}/>,
+                        'Videos': <VideoLibraryIcon style={{ fontSize: 40}}/>,
+                        'Photos': <PhotoLibraryIcon style={{ fontSize: 40}}/>,
+                        'Store': <StorefrontIcon style={{ fontSize: 40}}/>,
+                        'Contact': <ContactMailIcon style={{ fontSize: 40}}/>
+                    }[page]
+                }
             </Grid>
         </Button>                  
     )        
@@ -160,7 +177,7 @@ function DesktopNav({ onUpdatePage, selectedPage }) {
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
     const theme = useTheme();
-    const pages = ['Home', 'About', 'Videos', 'Photos', 'Store', 'Contact']
+    const pages = ['Home', 'About','Photos', 'Videos', 'Contact', 'Store']
     const handleDrawerOpen = () => {
         setOpen(!open);
     };
@@ -173,17 +190,18 @@ function DesktopNav({ onUpdatePage, selectedPage }) {
     return(
         <React.Fragment>
             <Paper className={classes.appBar}>
-                <Grid container spacing={1}  justify="space-between">  
-                    <Grid item md={1}>
-                        <img className={classes.avatar} src={hermanUrl}/>
-                    </Grid>
+                <Grid container spacing={1}  justify="space-around">  
+                    
                     {pages.map((page) => 
                          <NavButton key={page} page={page} selectedPage={selectedPage} onUpdatePage={onUpdatePage}/>  
                     )}
+                     
                     <Grid item md={1} className={classes.navGridItem}>
-                        <Button className={classes.navLinkNoBg} 
+                        <Button className={classes.unselected} 
+                                variant='contained'
+                                color='primary'
                                 onClick={handleDrawerOpen}>
-                                <Typography  variant="h6" >Playlist <QueueMusicIcon/></Typography>       
+                                <img className={classes.playlistIcon} src='https://i.imgur.com/5fM2KIP.png'/>
                         </Button>      
                     </Grid>
                 </Grid>  
