@@ -13,7 +13,8 @@ export default class Quote extends React.Component {
          'The bass guitar spoke in tongues to me, so I asked him what he meant. This is what he meant...',
          'Is this just a stroke of bad luck?',
          'All the sweet nothings turned out to mean nothing, true to their name... I guess...',
-         `Two of us we're gonna sail our ships through the storms in the middle of the sea. If the Devil send waves our way we'll make our escape.`
+         `Two of us we're gonna sail our ships through the storms in the middle of the sea. If the Devil send waves our way we'll make our escape.`,
+         `You boys sound like Pink Floyd from down the holler!`
      ]
      sources = [
          'A song yet unwritten',
@@ -25,7 +26,8 @@ export default class Quote extends React.Component {
          'Down in the Basement',
          'Bad Luck',
          'Blackberry Winter',
-         'Escape'
+         'Escape',
+         'An Audience Member'
     ]
     state = {
         selectedQuote: '',

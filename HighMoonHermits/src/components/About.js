@@ -31,6 +31,9 @@ const useStyles = makeStyles(theme => ({
         marginTop: '20px',
         marginBottom: '20px'
     },
+    mobileTextSection: {        
+        backgroundColor: '#a98274',
+    },
     image: {
         maxWidth: '50%',
         height: 'auto',
@@ -96,20 +99,20 @@ function MobileLayout({ width }){
             </div>
             <img className={classes.image} src='https://i.imgur.com/NefwGRV.jpg'/>   
             <img src={theShortVersion}/>                    
-            <Typography align='center' variant='h5'>
+            <h2 className={classes.mobileTextSection} align='center'>
                 {short}
-            </Typography>
+            </h2>
                 
             <img src={origins}/>                 
-            <Typography align='center' variant='h5'>
+            <h2 className={classes.mobileTextSection}  align='center'>
                 {section1}
-            </Typography>  
-            <Typography align='center' variant='h5'>
+            </h2>  
+            <h2 className={classes.mobileTextSection}  align='center'>
                 {section2}
-            </Typography>   
-            <Typography align='center' variant='h5'>
+            </h2>   
+            <h2 className={classes.mobileTextSection}  align='center'>
                 {section3}
-            </Typography>     
+            </h2>     
         </React.Fragment>
     )
 }
@@ -128,20 +131,20 @@ function DesktopLayout({ width }){
                     
                     <img className={classes.image} src='https://i.imgur.com/NefwGRV.jpg'/>   
                     <img src={theShortVersion}/>                    
-                    <Typography align='center' variant='h5'>
+                    <h2 align='center'>
                         {short}
-                    </Typography>
+                    </h2>
                         
                     <img src={origins}/>                 
-                    <Typography align='center' variant='h5'>
+                    <h2 align='center' >
                        {section1}
-                    </Typography>  
-                    <Typography align='center' variant='h5'>
+                    </h2>  
+                    <h2 align='center'>
                        {section2}
-                    </Typography>   
-                    <Typography align='center' variant='h5'>
+                    </h2>   
+                    <h2 align='center'>
                         {section3}
-                    </Typography>                                               
+                    </h2>                                               
                 </Paper>    
                     <div className={classes.columnContainer}>
                         <NameCard pic={zachPic} name={zachName} instrument={zachInst}/>
@@ -152,27 +155,7 @@ function DesktopLayout({ width }){
 }
 export default function About (){   
     
-    const banner = 'https://i.imgur.com/U3i3mIj.png'
-    const classes = useStyles();
-
-    const keltyPic = 'https://i.imgur.com/Oe9SbsC.png'
-    const keltyName = 'https://i.imgur.com/dzt4slO.png'
-    const keltyInst = 'https://i.imgur.com/vrUBr1j.png'
-
-    const buckPic = 'https://i.imgur.com/Rd7W1qf.png'
-    const buckName = 'https://i.imgur.com/9M6O8jB.png'
-    const buckInst = 'https://i.imgur.com/AgjSrn6.png'
-
-    const zachPic = 'https://i.imgur.com/IlWD8mO.png'
-    const zachName = 'https://i.imgur.com/eAKrJqc.png'
-    const zachInst = 'https://i.imgur.com/ZG7hVYY.png'
-
-    const nickPic = 'https://i.imgur.com/mM9Jp5N.png'
-    const nickName = 'https://i.imgur.com/VwUlezB.png'
-    const nickInst = 'https://i.imgur.com/l0b5XDR.png'
-
-    const theShortVersion = 'https://i.imgur.com/VXwD83j.png'
-    const origins= 'https://i.imgur.com/ITqVvI1.png'
+    const banner = 'https://i.imgur.com/U3i3mIj.png';
 
     return(
         <MediaConsumer>         
@@ -184,13 +167,14 @@ export default function About (){
         </MediaConsumer>
     )
 }
-const short = `A progressive folk-rock/jam band quartet out of Akron, OH, The High Moon Hermits pull from a broad spectrum of influences. From The Band, Dylon and the Dead, to The Avett Brothers,
-                    and Greensky Bluegrass, from Flecktones to Funkadelic, there's a little bit of everybody crafted into their strange brew`
+const short = `A progressive folk-rock/jam band quartet out of Akron, OH, The High Moon Hermits pull from a broad spectrum of influences. 
+                Consisting of equal parts Railroad Earth, Grateful Dead, Greensky Bluegrass, Bela Fleck and the Flecktones, Avett Brothers, and a dash of Pink Floyd,
+                there's a little bit of everybody crafted into their strange brew. My personal favorite compliment we've received: 'You boys sound like Pink Floyd from down the holler.'`
 const section1 = `Circa 2009/2010, Buck took Nick to Summer Camp Music Festival in Illinois, where a lifelong love of bluegrass and jam music was born. This set Nick down a path 
 that would find him purchasing a fiddle and later a banjo. In short time, the fiddle had to be returned due to being a broke college student, and the banjo ended up in Buck's 
 hands where it found its forever home. Having never played a string instrument, Buck spent the next several years honing his craft while blending in his unique perspective as 
 a saxophone player. During this time, Nick and Buck would go on to write quite a few songs that would be the beginnings of the High Moon Hermit song library we know today.`
-const section2 = `There were a few iterations of the original band--trying out different combinations of bass players and drummers--but nothing stuck for many years. A faithful night at bon fire in 
+const section2 = `There were a few iterations of the original band--trying out different combinations of bass players and drummers--but nothing stuck for many years. A faithful night at a bon fire in 
 2015 saw Zach Vujas join the fray as the band's search for a third member came to an end. Zach brought a much-needed low-end funkiness to the band with his Primus and Phish
 inspired bass runs and slaps. They played their first show as a string trio in August of 2016 at a benefit for a friend, and have since played a circuit of wineries,
 breweries and taphouses. Matt Kelty joined the band in 2020 as a drummer. Following in Buck's footsteps of not having much previous experience in his instrument before joining,

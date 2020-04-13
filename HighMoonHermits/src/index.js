@@ -37,7 +37,6 @@ const theme = createMuiTheme({
         fontWeight: 500
       },
       h5: {
-        backgroundColor: '#a98274',
         padding: '30px'
       }
     }
