@@ -31,8 +31,16 @@ const useStyles = makeStyles(theme => ({
         marginTop: '20px',
         marginBottom: '20px'
     },
+    mobileTextSectionTitle: {
+        backgroundColor: '#a98274',
+        width: '100%',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-around'
+    },
     mobileTextSection: {        
         backgroundColor: '#a98274',
+        padding: '50'
     },
     image: {
         maxWidth: '50%',
@@ -62,25 +70,6 @@ function NameCard({ pic, name, instrument }){
         </div>
     )
 }
-const banner = 'https://i.imgur.com/U3i3mIj.png'
-const keltyPic = 'https://i.imgur.com/Oe9SbsC.png'
-const keltyName = 'https://i.imgur.com/dzt4slO.png'
-const keltyInst = 'https://i.imgur.com/vrUBr1j.png'
-
-const buckPic = 'https://i.imgur.com/Rd7W1qf.png'
-const buckName = 'https://i.imgur.com/9M6O8jB.png'
-const buckInst = 'https://i.imgur.com/AgjSrn6.png'
-
-const zachPic = 'https://i.imgur.com/IlWD8mO.png'
-const zachName = 'https://i.imgur.com/eAKrJqc.png'
-const zachInst = 'https://i.imgur.com/ZG7hVYY.png'
-
-const nickPic = 'https://i.imgur.com/mM9Jp5N.png'
-const nickName = 'https://i.imgur.com/VwUlezB.png'
-const nickInst = 'https://i.imgur.com/l0b5XDR.png'
-
-const theShortVersion = 'https://i.imgur.com/VXwD83j.png'
-const origins= 'https://i.imgur.com/ITqVvI1.png'
 
 function MobileLayout({ width }){    
     const classes = useStyles();
@@ -98,12 +87,15 @@ function MobileLayout({ width }){
                 </div>   
             </div>
             <img className={classes.image} src='https://i.imgur.com/NefwGRV.jpg'/>   
-            <img src={theShortVersion}/>                    
+            <div className={classes.mobileTextSectionTitle}>
+                <img  src={theShortVersion}/>      
+            </div>              
             <h2 className={classes.mobileTextSection} align='center'>
                 {short}
             </h2>
-                
-            <img src={origins}/>                 
+            <div className={classes.mobileTextSectionTitle}>
+                <img  src={origins}/>       
+            </div>          
             <h2 className={classes.mobileTextSection}  align='center'>
                 {section1}
             </h2>  
@@ -153,8 +145,7 @@ function DesktopLayout({ width }){
         </React.Fragment>
     )
 }
-export default function About (){   
-    
+export default function About (){       
     const banner = 'https://i.imgur.com/U3i3mIj.png';
 
     return(
@@ -167,6 +158,26 @@ export default function About (){
         </MediaConsumer>
     )
 }
+
+const keltyPic = 'https://i.imgur.com/Oe9SbsC.png'
+const keltyName = 'https://i.imgur.com/dzt4slO.png'
+const keltyInst = 'https://i.imgur.com/vrUBr1j.png'
+
+const buckPic = 'https://i.imgur.com/Rd7W1qf.png'
+const buckName = 'https://i.imgur.com/9M6O8jB.png'
+const buckInst = 'https://i.imgur.com/AgjSrn6.png'
+
+const zachPic = 'https://i.imgur.com/IlWD8mO.png'
+const zachName = 'https://i.imgur.com/eAKrJqc.png'
+const zachInst = 'https://i.imgur.com/ZG7hVYY.png'
+
+const nickPic = 'https://i.imgur.com/mM9Jp5N.png'
+const nickName = 'https://i.imgur.com/VwUlezB.png'
+const nickInst = 'https://i.imgur.com/l0b5XDR.png'
+
+const theShortVersion = 'https://i.imgur.com/VXwD83j.png'
+const origins= 'https://i.imgur.com/ITqVvI1.png'
+
 const short = `A progressive folk-rock/jam band quartet out of Akron, OH, The High Moon Hermits pull from a broad spectrum of influences. 
                 Consisting of equal parts Railroad Earth, Grateful Dead, Greensky Bluegrass, Bela Fleck and the Flecktones, Avett Brothers, and a dash of Pink Floyd,
                 there's a little bit of everybody crafted into their strange brew. My personal favorite compliment we've received: 'You boys sound like Pink Floyd from down the holler.'`
