@@ -2,6 +2,7 @@ import React from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 import { Paper } from '@material-ui/core';
 import Header from './Header';
+import Playlist from './Playlist';
 
 const background = 'https://i.imgur.com/DzgIdCj.jpg';
 const useStyles = makeStyles(theme => ({
@@ -34,6 +35,7 @@ export default function PageTemplate({banner, width, children}){
     return (
         <React.Fragment>
             <Header image={banner}/>
+            <Playlist/>
             <Paper className={width > 500 ? classes.paper : classes.paperVertical}>
                 {children}
             </Paper>
