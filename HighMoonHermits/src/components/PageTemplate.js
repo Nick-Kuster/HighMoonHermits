@@ -30,12 +30,10 @@ paperVertical: {
 }
 }))
 
-export default function PageTemplate({banner, width, children}){
+export default function PageTemplate({ width, children}){
     const classes = useStyles();
     return (
         <React.Fragment>
-            <Header image={banner}/>
-            <Playlist/>
             <Paper className={width > 500 ? classes.paper : classes.paperVertical}>
                 {children}
             </Paper>

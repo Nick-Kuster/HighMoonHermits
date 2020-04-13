@@ -72,11 +72,10 @@ function VideoGrid({ width }) {
     const classes = useStyles();
     const playlistId = 'PLLB2v7B6Fp2K6lPkCA06goPmN0_e_YDHr';
     const featuredVideoLink = 'https://www.youtube.com/embed/Y8DO47Ucp2g';
-    const videoBanner = 'https://i.imgur.com/czDax4V.png';
     const featured = 'https://i.imgur.com/L2G6sXf.png';
     const playlist ='https://i.imgur.com/stWfrRy.png';
     return(
-    <PageTemplate banner={ videoBanner } width={ width }>
+    <PageTemplate width={ width }>
         <Video link={featuredVideoLink} width={width} headerImage={featured}/>   
         <div style={{height: '200px'}}></div>          
         <Video link={`https://www.youtube.com/embed/videoseries?list=${playlistId}`} width={width} headerImage={playlist}/>      

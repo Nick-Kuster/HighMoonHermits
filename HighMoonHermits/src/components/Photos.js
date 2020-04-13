@@ -7,7 +7,6 @@ import Dialog from '@material-ui/core/Dialog';
 import Slide from '@material-ui/core/Slide';
 import Header from './Header';
 
-const banner = 'https://i.imgur.com/CZBQOc3.png'
 const useStyles = makeStyles((theme) => ({
     
     gridList: {
@@ -83,7 +82,7 @@ export default class Photos extends React.Component {
     render() {
         const{ photos } = this.state
         return(
-            <PageTemplate banner={ banner }>    
+            <PageTemplate>    
                 <ImageGrid photos={photos}/>                     
             </PageTemplate>
         )

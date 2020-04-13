@@ -29,13 +29,21 @@ const useStyles = makeStyles(theme => ({
 
 
 
-export default function Header({ image, variant = 'pageHeader'}){
+export default function Header({ selectedPage, image, variant = 'pageHeader'}){
     const classes = useStyles();
+    const images = {
+            'About' : 'https://i.imgur.com/U3i3mIj.png',    
+            'Contact' : 'https://i.imgur.com/tmZzV9G.png',    
+            'Home' : 'https://i.imgur.com/BdFcxtD.png',    
+            'Photos' : 'https://i.imgur.com/CZBQOc3.png',
+            'Store' : 'https://i.imgur.com/AUKrLMu.png',    
+            'Videos' : 'https://i.imgur.com/czDax4V.png'
+    } 
     
     return(
         variant === 'pageHeader' ?
         <Paper className={classes.pageHeader}>  
-            <img className={classes.image} src={image}/>
+            <img className={classes.image} src={images[selectedPage]}/>
         </Paper>
             :    
         <div className={classes.subtitleHeader}>

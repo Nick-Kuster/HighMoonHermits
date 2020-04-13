@@ -13,6 +13,8 @@ import Nav from './components/Nav';
 import Banner  from './components/Banner';
 import BackToTop from './components/BackToTop';
 import SocialMedia from './components/SocialMedia';
+import Header from './components/Header';
+import Playlist from './components/Playlist';
 
 const theme = createMuiTheme({
     palette: {
@@ -81,6 +83,8 @@ class App extends React.Component{
               <Nav  onUpdatePage={this.updatePage}
                     selectedPage ={selectedPage}
               />
+              <Header selectedPage={ selectedPage }/>
+              <Playlist/>
               { selectedPage === 'Home' && <Home/>}
               { selectedPage === 'About' && <About/>}                  
               { selectedPage === 'Videos' && <Videos/>}  

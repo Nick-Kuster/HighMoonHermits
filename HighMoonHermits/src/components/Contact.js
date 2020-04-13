@@ -27,13 +27,12 @@ const useStyles = makeStyles(theme => ({
 
 export default function About (){   
     
-    const banner = 'https://i.imgur.com/tmZzV9G.png'
     const classes = useStyles()
 
     return(
         <MediaConsumer>         
         {({ width }) => (
-            <PageTemplate banner={ banner } width={ width }>    
+            <PageTemplate width={ width }>    
                 <Paper color={ '#fff' } className={classes.paper}>
                     <Typography variant='h3'>
                         For booking or for any and all inquiries:  

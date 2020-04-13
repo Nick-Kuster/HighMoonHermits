@@ -146,12 +146,11 @@ function DesktopLayout({ width }){
     )
 }
 export default function About (){       
-    const banner = 'https://i.imgur.com/U3i3mIj.png';
 
     return(
         <MediaConsumer>         
         {({ width }) => (
-            <PageTemplate banner={ banner } width = { width }>    
+            <PageTemplate width = { width }>    
                 {width > 500 ? <DesktopLayout/> : <MobileLayout/>}
             </PageTemplate>
         )}
