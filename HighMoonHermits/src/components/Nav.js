@@ -193,28 +193,11 @@ function DesktopNav({ onUpdatePage, selectedPage }) {
         <React.Fragment>
             <Paper className={classes.appBar}>
                 <Grid container spacing={1}  justify="space-around">  
-                    <Grid item md={1}>
-                        <img className={classes.avatar} src={hermanUrl}/>
-                    </Grid>
                     {pages.map((page) => 
                          <NavButton key={page} page={page} selectedPage={selectedPage} onUpdatePage={onUpdatePage}/>  
                     )}
-                     
-                    <Grid item md={1} className={classes.navGridItem}>
-                        <Button className={classes.unselected} 
-                                variant='contained'
-                                color='primary'
-                                onClick={handleDrawerOpen}>
-                                <img className={classes.playlistIcon} src='https://i.imgur.com/5fM2KIP.png'/>
-                        </Button>      
-                    </Grid>
                 </Grid>  
-            </Paper>    
-            <div style={{visibility: open ? 'visible' : 'hidden', position: 'absolute', zIndex: 1, right: 0}}>
-                <div>
-                    <SoundCloud/>
-                </div>
-            </div>                 
+            </Paper>                
         </React.Fragment>                
     )
 }

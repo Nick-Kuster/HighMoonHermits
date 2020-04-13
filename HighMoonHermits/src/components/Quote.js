@@ -2,6 +2,15 @@ import React from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 import { Typography, Grid } from '@material-ui/core';
 
+const useStyles = makeStyles(theme => ({
+    root: {
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'space-around',
+        height: '100%'
+    }
+}))
 export default class Quote extends React.Component {
     languages = [
         'How ya gonna sell that shirt off your back?',
@@ -54,15 +63,17 @@ export default class Quote extends React.Component {
     render () {
         const { selectedQuote, selectedQuoteSource } = this.state
         return(            
-            <Grid container spacing={2} style={{marginBottom: '15px'}} justify="space-between">  
-                <Grid item md={12} >
-                    <Typography  variant="h5" align="center"><i>"{selectedQuote}"</i> </Typography> 
-                </Grid>
-
-                <Grid item md={12}>
-                    <Typography  variant="h5" align="right"><i>--{selectedQuoteSource}</i></Typography>
-                </Grid>
-            </Grid>          
+            <QuoteContent selectedQuote={selectedQuote} selectedQuoteSource={selectedQuoteSource}/>
         )        
     }
+}
+
+function QuoteContent({ selectedQuote, selectedQuoteSource }){
+    
+    const classes = useStyles();
+    return(
+        <div className={classes.root}>  
+            <Typography  variant="h5" align="center"><i>"{selectedQuote}"</i> <br/> <i>--{selectedQuoteSource}</i></Typography> 
+        </div>    
+    )
 }
