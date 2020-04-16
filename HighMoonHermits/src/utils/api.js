@@ -30,3 +30,25 @@ export function getBlogs () {
         }
     }).promise();
 }
+
+export function getEvents () {
+  
+    AWS.config.region = 'us-east-2'; // Region
+    AWS.config.credentials = new AWS.CognitoIdentityCredentials({
+        IdentityPoolId: 'us-east-2:98e81336-0bc7-45fe-b9fe-a59a42f11151',
+    });
+    var docClient = new AWS.DynamoDB.DocumentClient();
+    var params = {
+        TableName : "Events"
+    };
+    var json = ''
+    
+    return docClient.scan(params, function (err, data) {
+        if (err) {
+            json = JSON.stringify(err, undefined, 2);
+        }
+        else {
+            return data.Items
+        }
+    }).promise();
+}

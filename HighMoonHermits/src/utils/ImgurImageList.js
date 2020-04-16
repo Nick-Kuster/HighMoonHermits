@@ -34,6 +34,6 @@ export function ImageList(){
         'https://i.imgur.com/OrMUBb8.png',
         'https://i.imgur.com/l8gVN2j.jpg',
         'https://i.imgur.com/sW7pp3K.jpg',
-        
+        'https://i.imgur.com/de6yIBC.jpg'
     ])
 }

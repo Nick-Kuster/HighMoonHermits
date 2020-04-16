@@ -1,10 +1,6 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles';
-import { Button, IconButton, Tooltip, Paper } from '@material-ui/core';
-import FacebookIcon from '@material-ui/icons/Facebook';
-import YouTubeIcon from '@material-ui/icons/YouTube';
-import InstagramIcon from '@material-ui/icons/Instagram';
-import TwitterIcon from '@material-ui/icons/Twitter';
+import { Button, Tooltip, Paper } from '@material-ui/core';
 import { MediaConsumer } from '../contexts/media';
 import { SocialIcon } from 'react-social-icons';
 
