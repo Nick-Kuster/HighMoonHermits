@@ -6,7 +6,7 @@ export default function BandCamp ({onClickAway, playerType = 'BandCamp'}){
     return(        
        
         
-            <div onClick={onClickAway}>
+            <div onClick={onClickAway} onTouchEnd={onClickAway}>
                 <iframe border='0'
                         width='500px'
                         height='1000px'
