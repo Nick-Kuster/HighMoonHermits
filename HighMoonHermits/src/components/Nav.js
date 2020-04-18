@@ -1,7 +1,6 @@
 import React from 'react';
 import { Typography, AppBar, Grid, Button, Paper } from '@material-ui/core';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
-import SoundCloud from './SoundCloud';
 import QueueMusicIcon from '@material-ui/icons/QueueMusic';
 import { MediaConsumer } from '../contexts/media';
 import BackToTop from './BackToTop';
@@ -251,16 +250,6 @@ function MobileNav({ onUpdatePage, selectedPage }){
             )}   
         <BackToTop/>
         </AppBar>
-        <SimpleDialog open={open} onUpdatePage={onUpdatePage} selectedPage={selectedPage} onClose={handleClose} >
-               {
-                dialogContent === 'nav' ? <SoundCloud/> :
-                <React.Fragment>
-                    {pages.map((page) => 
-                    <MobileNavButton key={page} page={page} selectedPage={selectedPage} onUpdatePage={onUpdatePageClose}/>  
-                    )}      
-                </React.Fragment>                     
-               }
-        </SimpleDialog>
       </React.Fragment>
     );     
 }
