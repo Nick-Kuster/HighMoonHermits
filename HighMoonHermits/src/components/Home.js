@@ -98,7 +98,7 @@ const useStyles = makeStyles(theme => ({
 
 function blogList({blogs}){    
     const classes = useStyles();    
-    blogs.sort((a, b) => a.Id - b.Id)
+    blogs.sort((a, b) => b.Id - a.Id)
     return(
         <React.Fragment>
             {blogs.map((blog) => {
@@ -114,7 +114,9 @@ function blogList({blogs}){
                             title={blog.Title}
                             subheader={blog.Date}
                         />
-                        
+                        <CardContent>
+                                <Markup content={blog.Content}/>
+                        </CardContent>
                         {blog.Image != `''` &&
                             <CardMedia
                                 className={classes.media}
@@ -130,9 +132,7 @@ function blogList({blogs}){
                             />
                         }
                         {!(blog.Image && blog.Video) && <Divider/>}
-                        <CardContent>
-                                <Markup content={blog.Content}/>
-                        </CardContent>
+                        
                     </Card>
                 )
             })}
