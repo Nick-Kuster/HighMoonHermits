@@ -30,7 +30,7 @@ export default function Playlist({ props }){
                     <img className={classes.playlistIcon} src='https://i.imgur.com/5fM2KIP.png'/>
                 </Button>
             </div>
-            <div style={{visibility: open ? 'visible' : 'hidden', position: 'absolute', height: '100%',width:'100%', zIndex: 1}}>
+            <div style={{visibility: open ? 'visible' : 'hidden', alignItems: 'center', display: 'flex', justifyContent: 'center', position: 'absolute', height: '100%',width:'100%', zIndex: 1}}>
                 <SoundCloud/>
             </div> 
         </React.Fragment>
