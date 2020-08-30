@@ -15,7 +15,7 @@ import FacebookIcon from '@material-ui/icons/Facebook';
 
 const happenings = 'https://i.imgur.com/GZURAsq.png';
 const eventsHeader = 'https://i.imgur.com/RLVaAr7.png';
-
+const pastEventsHeader = 'https://i.imgur.com/JcnrCzS.png';
 const useStyles = makeStyles(theme => ({
     imageFit: {
         width: '150px',
@@ -143,20 +143,18 @@ function blogList({blogs}){
 
 function eventList({ events }){    
     const classes = useStyles();
-    events.sort((a, b) => a.Id - b.Id)
+    events?.sort((a, b) => a.Id - b.Id)
     return (
         <React.Fragment>
             <div>
-            {events.map((event) => {
-
+            {events?.map((event) => {
                 return(
                     <div key={event.Id} className={classes.event}> 
                         <div className={classes.eventSpacer}>
                         <a href={event['Venue Link']} target='blank'><img className={classes.eventImage} alt='hello' src={event['Event Image']}/></a></div>
                         <div className={classes.eventDetails}>
                             <Typography variant='h3'>{event.Venue}</Typography> 
-                            <div className={classes.innerEventDetails}>
-                                
+                            <div className={classes.innerEventDetails}>                                
                                 {event['Event Link'] != `''` ?
                                 <div className={classes.eventPage}>
                                     <span><i>Event Page:</i></span>
@@ -182,7 +180,7 @@ function eventList({ events }){
     )
 }
 
-function HomeLayout({blogs, events, width }){
+function HomeLayout({blogs, events, pastEvents, futureEvents, width }){
     const classes = useStyles();
     const mobile = width < 500;
     return (        
@@ -191,7 +189,11 @@ function HomeLayout({blogs, events, width }){
                         <div className={classes.mobileEventsGrid}>                    
                             <Header image={eventsHeader} variant='subHeader'/>
                             <div className={classes.innerEvent}>                                
-                                {eventList({events})} 
+                                {eventList({events: futureEvents})} 
+                            </div>
+                            <Header image={pastEventsHeader} variant='subHeader'/>
+                            <div className={classes.innerEvent}>                                
+                                {eventList({events: pastEvents})} 
                             </div>
                         </div>     
                     }
@@ -203,7 +205,11 @@ function HomeLayout({blogs, events, width }){
                         <div  className={classes.eventsGrid}>                    
                             <Header image={eventsHeader} variant='subHeader'/>
                             <div className={classes.innerEvent}>                                
-                                {eventList({events})} 
+                                {eventList({events: futureEvents})} 
+                            </div>
+                            <Header image={pastEventsHeader} variant='subHeader'/>
+                            <div className={classes.innerEvent}>                                
+                                {eventList({events: pastEvents})} 
                             </div>
                         </div>     
                     }    
@@ -215,6 +221,8 @@ export default class Home extends React.Component {
     state = {    
         blogs: [],
         events: [],
+        pastEvents: [],
+        futureEvents: [],
         width: 500
     } 
     
@@ -229,15 +237,26 @@ export default class Home extends React.Component {
         getEvents().then(
             events => {
                 const data = events.Items 
-                this.setState({ events: data })
+                var now = new Date();
+                now.setHours(0,0,0,0);
+                let pastEvents = data.filter( function (x) {
+                    var date = new Date(x.Date);
+                    return date < now;
+                  });
+                let futureEvents = data.filter( function (x) {
+                    var date = new Date(x.Date);
+                    return date > now;
+                  });
+                                
+                this.setState({ events: data, pastEvents: pastEvents, futureEvents: futureEvents })
             }
         )
     }
     
     render() {
-        const{ blogs, events, width } = this.state
+        const{ blogs, events, pastEvents, futureEvents, width } = this.state
         return (
-            <HomeLayout blogs={blogs} events={events} width={width} /> 
+            <HomeLayout blogs={blogs} events={events} pastEvents={pastEvents} futureEvents={futureEvents} width={width} /> 
         )
     }
 }
