@@ -2,7 +2,7 @@ import React from 'react';
 import { getBlogs, getEvents } from '../utils/api';
 import {  Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import { Markup } from 'interweave'
+import { Markup, UrlMatcher } from 'interweave'
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
