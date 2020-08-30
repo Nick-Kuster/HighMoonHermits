@@ -2,7 +2,7 @@ import React from 'react';
 import { getBlogs, getEvents } from '../utils/api';
 import {  Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import { Markup, UrlMatcher } from 'interweave'
+import { Markup } from 'interweave'
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
@@ -115,7 +115,7 @@ function blogList({blogs}){
                             subheader={blog.Date}
                         />
                         <CardContent>
-                                <Markup  matchers={[new UrlMatcher('url')]}
+                                <Markup allowAttributes
                                 content={blog.Content}/>
                         </CardContent>
                         {blog.Image != `''` &&
