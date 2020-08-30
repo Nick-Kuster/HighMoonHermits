@@ -115,7 +115,8 @@ function blogList({blogs}){
                             subheader={blog.Date}
                         />
                         <CardContent>
-                                <Markup content={blog.Content}/>
+                                <Markup  matchers={[new UrlMatcher('url')]}
+                                content={blog.Content}/>
                         </CardContent>
                         {blog.Image != `''` &&
                             <CardMedia

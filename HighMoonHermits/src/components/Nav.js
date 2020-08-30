@@ -132,7 +132,7 @@ function NavButton({ page, selectedPage, onUpdatePage }){
     const home = 'https://i.imgur.com/Fr9hFwX.png'
     const about = 'https://i.imgur.com/aEzODow.png'
     const photos = 'https://i.imgur.com/oGpaRDP.png'
-    const store = 'https://i.imgur.com/we4gq0k.png'
+    //const store = 'https://i.imgur.com/we4gq0k.png'
     return(
         <Grid item md={1} className={classes.navGridItem} >     
             <Button variant='contained' color='primary' className={page === selectedPage ? classes.selected : classes.unselected} onClick={() => onUpdatePage(page)}>                    
@@ -142,7 +142,7 @@ function NavButton({ page, selectedPage, onUpdatePage }){
                         'About': <img src={about}/>,
                         'Videos': <img src={videos}/>,
                         'Photos': <img src={photos}/>,
-                        'Store': <img src={store}/>,
+                        //'Store': <img src={store}/>,
                         'Contact': <img src={contact}/>
                     }[page]
                 }
@@ -164,7 +164,7 @@ function MobileNavButton({ page, selectedPage, onUpdatePage }){
                         'About': <InfoIcon style={{ fontSize: 40}}/>,
                         'Videos': <VideoLibraryIcon style={{ fontSize: 40}}/>,
                         'Photos': <PhotoLibraryIcon style={{ fontSize: 40}}/>,
-                        'Store': <StorefrontIcon style={{ fontSize: 40}}/>,
+                        //'Store': <StorefrontIcon style={{ fontSize: 40}}/>,
                         'Contact': <ContactMailIcon style={{ fontSize: 40}}/>
                     }[page]                    
                 }
@@ -178,7 +178,7 @@ function DesktopNav({ onUpdatePage, selectedPage }) {
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
     const theme = useTheme();
-    const pages = ['Home', 'About', 'Videos', 'Photos', 'Store', 'Contact']
+    const pages = ['Home', 'About', 'Videos', 'Photos', 'Contact']
     const handleDrawerOpen = () => {
         setOpen(!open);
     };
@@ -224,7 +224,7 @@ function SimpleDialog({ open, onClose, children }) {
 function MobileNav({ onUpdatePage, selectedPage }){    
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
-    const pages = ['Home', 'About', 'Videos', 'Photos', 'Store', 'Contact'];
+    const pages = ['Home', 'About', 'Videos', 'Photos', 'Contact'];
     var dialogContent;
 
     const onUpdatePageClose = (selectedPage) => {
